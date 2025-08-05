@@ -1155,6 +1155,9 @@ class RetrofitForge3DPlatform {
     }
 
     showSectionContent() {
+        // Lock all overlay positions to prevent movement during slideshow
+        this.lockOverlayPositions();
+        
         // Hide all charts and overlays
         document.querySelectorAll('.chart-container').forEach(chart => {
             chart.classList.remove('active');
@@ -1216,7 +1219,35 @@ class RetrofitForge3DPlatform {
                 document.getElementById('legendOverlay').classList.add('active');
                 break;
         }
-        }
+    }
+
+    lockOverlayPositions() {
+        // Force all overlays to maintain their fixed positions
+        const overlays = [
+            'chartsOverlay',
+            'legendOverlay', 
+            'performanceOverlay',
+            'carbonNFTOverlay'
+        ];
+        
+        overlays.forEach(overlayId => {
+            const overlay = document.getElementById(overlayId);
+            if (overlay) {
+                // Remove any inline styles that might override CSS
+                overlay.style.removeProperty('transform');
+                overlay.style.removeProperty('top');
+                overlay.style.removeProperty('bottom');
+                overlay.style.removeProperty('left');
+                overlay.style.removeProperty('right');
+                overlay.style.removeProperty('position');
+                overlay.style.removeProperty('animation');
+                
+                // Ensure fixed positioning
+                overlay.style.setProperty('position', 'fixed', 'important');
+                overlay.style.setProperty('animation', 'none', 'important');
+            }
+        });
+    }
 
     showCarbonNFT() {
         document.getElementById('carbonNFTOverlay').classList.add('active');

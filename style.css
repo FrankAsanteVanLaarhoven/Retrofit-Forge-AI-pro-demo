@@ -640,15 +640,17 @@ body::before {
 
 /* Enhanced Performance Overlays */
 .performance-overlay {
-    position: fixed;
-    top: 140px;
-    left: 30px;
+    position: fixed !important;
+    top: 140px !important;
+    left: 30px !important;
     z-index: 10;
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(0) !important;
     transition: opacity 0.5s ease;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
+    /* Prevent any animation or transform changes */
+    animation: none !important;
 }
 
 .performance-overlay.active {
@@ -716,10 +718,10 @@ body::before {
 
 /* Enhanced Chart Overlays - Fixed Positioning */
 .charts-overlay {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     z-index: 10;
     max-width: 800px;
     width: 90%;
@@ -732,6 +734,8 @@ body::before {
     overflow: visible;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
+    /* Prevent any animation or transform changes */
+    animation: none !important;
 }
 
 .charts-overlay:hover {
@@ -749,8 +753,8 @@ body::before {
     width: 100%;
     position: relative;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
+    /* Remove transform to prevent movement */
+    transition: opacity 0.5s ease;
     backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 
         0 4px 16px rgba(31, 41, 55, 0.1),
@@ -762,7 +766,7 @@ body::before {
 
 .chart-container.active {
     opacity: 1;
-    transform: translateY(0);
+    /* No transform change - keep fixed position */
 }
 
 /* Specific chart positioning for consistent display */
@@ -793,15 +797,17 @@ body::before {
 
 /* Enhanced 3D Legend - Fixed Positioning */
 .legend-overlay {
-    position: fixed;
-    top: 140px;
-    right: 30px;
+    position: fixed !important;
+    top: 140px !important;
+    right: 30px !important;
     z-index: 10;
     opacity: 0;
-    transform: translateX(0);
+    transform: translateX(0) !important;
     transition: opacity 0.5s ease;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
+    /* Prevent any animation or transform changes */
+    animation: none !important;
 }
 
 .legend-overlay.active {
@@ -856,15 +862,17 @@ body::before {
 
 /* Carbon Credit NFT Display - Fixed Positioning */
 .carbon-nft-overlay {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
     z-index: 10;
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(0) !important;
     transition: opacity 0.5s ease;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
+    /* Prevent any animation or transform changes */
+    animation: none !important;
 }
 
 .carbon-nft-overlay.active {
