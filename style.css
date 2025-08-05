@@ -779,17 +779,27 @@ body::before {
     transform: translateY(0) !important;
 }
 
-/* Enhanced slideshow transitions */
+/* Enhanced slideshow transitions - Position Locked */
 .chart-container {
-    transition: opacity 0.8s ease, transform 0.8s ease !important;
+    transition: opacity 0.8s ease !important;
+    transform: none !important;
 }
 
 .performance-overlay.active,
 .legend-overlay.active,
 .carbon-nft-overlay.active {
     opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: opacity 0.8s ease, transform 0.8s ease !important;
+    transform: none !important;
+    transition: opacity 0.8s ease !important;
+}
+
+/* Ensure all overlays maintain fixed positions */
+.chart-container,
+.performance-overlay,
+.legend-overlay,
+.carbon-nft-overlay {
+    transform: none !important;
+    animation: none !important;
 }
 
 /* Slideshow progress indicator */

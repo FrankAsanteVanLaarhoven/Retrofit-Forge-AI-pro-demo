@@ -189,6 +189,8 @@ class RetrofitForge3DPlatform {
                 console.log('Point cloud created');
             this.initCharts();
                 console.log('Charts initialized');
+                this.initializeOverlayPositions();
+                console.log('Overlay positions initialized');
                 this.updateROIMetrics();
                 console.log('ROI metrics updated');
                 this.updateClimateRisk();
@@ -217,6 +219,39 @@ class RetrofitForge3DPlatform {
                 console.error('Error during initialization:', error);
             }
         }, 1000);
+    }
+
+    initializeOverlayPositions() {
+        // Initialize all overlays with their fixed positions
+        const overlays = [
+            'chartsOverlay',
+            'legendOverlay', 
+            'performanceOverlay',
+            'carbonNFTOverlay'
+        ];
+        
+        overlays.forEach(overlayId => {
+            const overlay = document.getElementById(overlayId);
+            if (overlay) {
+                // Set initial fixed positioning
+                overlay.style.setProperty('position', 'fixed', 'important');
+                overlay.style.setProperty('animation', 'none', 'important');
+                overlay.style.setProperty('cursor', 'default', 'important');
+                overlay.style.setProperty('user-select', 'none', 'important');
+                overlay.style.setProperty('transform', 'none', 'important');
+                overlay.style.setProperty('opacity', '0', 'important');
+            }
+        });
+        
+        // Initialize chart containers
+        document.querySelectorAll('.chart-container').forEach(chart => {
+            chart.style.setProperty('position', 'relative', 'important');
+            chart.style.setProperty('animation', 'none', 'important');
+            chart.style.setProperty('cursor', 'default', 'important');
+            chart.style.setProperty('user-select', 'none', 'important');
+            chart.style.setProperty('transform', 'none', 'important');
+            chart.style.setProperty('opacity', '0', 'important');
+        });
     }
 
     setupEventListeners() {
@@ -1152,8 +1187,21 @@ class RetrofitForge3DPlatform {
         
         elements.forEach(el => {
             if (el) {
+                // Only change opacity, not position
                 el.style.opacity = '0';
-                el.style.transform = 'translateY(10px)';
+                
+                // Ensure overlays maintain fixed positioning
+                if (el.classList.contains('chart-container') || 
+                    el.id === 'performanceOverlay' || 
+                    el.id === 'legendOverlay' || 
+                    el.id === 'carbonNFTOverlay') {
+                    
+                    el.style.setProperty('position', 'fixed', 'important');
+                    el.style.setProperty('animation', 'none', 'important');
+                    el.style.setProperty('cursor', 'default', 'important');
+                    el.style.setProperty('user-select', 'none', 'important');
+                    el.style.removeProperty('transform');
+                }
             }
         });
     }
@@ -1240,9 +1288,20 @@ class RetrofitForge3DPlatform {
         
         overlays.forEach(overlay => {
             if (overlay) {
+                // Remove active class
                 overlay.classList.remove('active');
+                
+                // Only change opacity, not position
                 overlay.style.opacity = '0';
-                overlay.style.transform = 'translateY(10px)';
+                
+                // Ensure fixed positioning is maintained
+                overlay.style.setProperty('position', 'fixed', 'important');
+                overlay.style.setProperty('animation', 'none', 'important');
+                overlay.style.setProperty('cursor', 'default', 'important');
+                overlay.style.setProperty('user-select', 'none', 'important');
+                
+                // Remove any transform that might cause movement
+                overlay.style.removeProperty('transform');
             }
         });
     }
@@ -1331,10 +1390,26 @@ class RetrofitForge3DPlatform {
     fadeInOverlay(overlayId) {
         const overlay = document.getElementById(overlayId);
         if (overlay) {
-            overlay.classList.add('active');
-            overlay.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            // Remove any conflicting inline styles
+            overlay.style.removeProperty('transform');
+            overlay.style.removeProperty('top');
+            overlay.style.removeProperty('bottom');
+            overlay.style.removeProperty('left');
+            overlay.style.removeProperty('right');
+            overlay.style.removeProperty('position');
+            
+            // Force fixed positioning
+            overlay.style.setProperty('position', 'fixed', 'important');
+            overlay.style.setProperty('animation', 'none', 'important');
+            overlay.style.setProperty('cursor', 'default', 'important');
+            overlay.style.setProperty('user-select', 'none', 'important');
+            
+            // Only animate opacity, not position
+            overlay.style.transition = 'opacity 0.8s ease';
             overlay.style.opacity = '1';
-            overlay.style.transform = 'translateY(0)';
+            
+            // Add active class
+            overlay.classList.add('active');
         }
     }
 
