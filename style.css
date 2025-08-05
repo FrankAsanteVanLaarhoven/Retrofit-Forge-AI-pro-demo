@@ -776,6 +776,56 @@ body::before {
 .chart-container.active {
     opacity: 1;
     /* No transform change - keep fixed position */
+    transform: translateY(0) !important;
+}
+
+/* Enhanced slideshow transitions */
+.chart-container {
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+
+.performance-overlay.active,
+.legend-overlay.active,
+.carbon-nft-overlay.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+
+/* Slideshow progress indicator */
+.slideshow-progress {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slideshow-progress.visible {
+    opacity: 1;
+}
+
+.slideshow-progress .slide-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.slideshow-progress .slide-indicator.active {
+    background: #3B82F6;
+    transform: scale(1.2);
 }
 
 /* Specific chart positioning for consistent display */

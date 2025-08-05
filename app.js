@@ -1066,46 +1066,41 @@ class RetrofitForge3DPlatform {
     }
 
     startPresentation() {
+        console.log('Starting new slideshow presentation...');
+        this.currentSection = 0;
+        this.isPlaying = true;
         this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
+        this.startSlideshowTimer();
     }
 
-    scheduleNextSection() {
+    startSlideshowTimer() {
         if (this.sectionTimer) {
             clearTimeout(this.sectionTimer);
         }
         
-        this.sectionTimer = setTimeout(() => {
-            if (this.isPlaying) {
+        if (this.isPlaying) {
+            this.sectionTimer = setTimeout(() => {
                 this.nextSection();
-            }
-        }, this.sections[this.currentSection].duration);
+            }, 8000); // 8 seconds per slide
+        }
     }
 
     nextSection() {
         this.currentSection = (this.currentSection + 1) % this.sections.length;
         this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
+        this.startSlideshowTimer();
     }
 
     previousSection() {
         this.currentSection = (this.currentSection - 1 + this.sections.length) % this.sections.length;
         this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
+        this.startSlideshowTimer();
     }
 
     goToSection(index) {
         this.currentSection = index;
         this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
+        this.startSlideshowTimer();
     }
 
     togglePlayPause() {
@@ -1116,7 +1111,7 @@ class RetrofitForge3DPlatform {
         if (this.isPlaying) {
             playPauseIcon.textContent = '⏸️';
             playPauseText.textContent = 'Pause';
-            this.scheduleNextSection();
+            this.startSlideshowTimer();
         } else {
             playPauseIcon.textContent = '▶️';
             playPauseText.textContent = 'Play';
@@ -1129,7 +1124,57 @@ class RetrofitForge3DPlatform {
     updateSection() {
         const section = this.sections[this.currentSection];
         
-        // Update UI
+        // Smooth transition effect
+        this.fadeOutCurrentContent();
+        
+        setTimeout(() => {
+            // Update UI elements
+            this.updateSectionUI(section);
+            
+            // Show new content with fade-in effect
+            this.fadeInNewContent();
+            
+            // Update progress
+            this.updateProgress();
+            
+        }, 300); // Wait for fade-out
+    }
+
+    fadeOutCurrentContent() {
+        const elements = [
+            document.getElementById('currentSectionName'),
+            document.getElementById('currentSectionDesc'),
+            ...document.querySelectorAll('.chart-container'),
+            document.getElementById('performanceOverlay'),
+            document.getElementById('legendOverlay'),
+            document.getElementById('carbonNFTOverlay')
+        ];
+        
+        elements.forEach(el => {
+            if (el) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+            }
+        });
+    }
+
+    fadeInNewContent() {
+        const elements = [
+            document.getElementById('currentSectionName'),
+            document.getElementById('currentSectionDesc')
+        ];
+        
+        elements.forEach(el => {
+            if (el) {
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    updateSectionUI(section) {
+        // Update section information
         document.getElementById('currentSectionNum').textContent = this.currentSection + 1;
         document.getElementById('currentSectionName').textContent = section.name;
         document.getElementById('currentSectionDesc').textContent = section.description;
@@ -1139,85 +1184,157 @@ class RetrofitForge3DPlatform {
             indicator.classList.toggle('active', index === this.currentSection);
         });
 
-        // Update progress bar
-        const progress = ((this.currentSection + 1) / this.sections.length) * 100;
-        document.getElementById('progressBar').style.width = `${progress}%`;
-
-        // Update scroll button states
-        try {
-            this.updateScrollButtonStates();
-        } catch (error) {
-            console.error('Error updating scroll button states in updateSection:', error);
-        }
+        // Update slideshow progress indicator
+        this.updateSlideshowProgress();
 
         // Show appropriate visualizations
         this.showSectionContent();
+    }
+
+    updateSlideshowProgress() {
+        const progressContainer = document.getElementById('slideshowProgress');
+        const indicators = progressContainer.querySelectorAll('.slide-indicator');
+        
+        // Show the progress indicator
+        progressContainer.classList.add('visible');
+        
+        // Update active indicator
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === this.currentSection);
+        });
+        
+        // Hide progress indicator after 3 seconds
+        setTimeout(() => {
+            progressContainer.classList.remove('visible');
+        }, 3000);
+    }
+
+    updateProgress() {
+        const progress = ((this.currentSection + 1) / this.sections.length) * 100;
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
     }
 
     showSectionContent() {
         // Lock all overlay positions to prevent movement during slideshow
         this.lockOverlayPositions();
         
-        // Hide all charts and overlays
-        document.querySelectorAll('.chart-container').forEach(chart => {
-            chart.classList.remove('active');
+        // Hide all charts and overlays with fade effect
+        this.hideAllOverlays();
+        
+        // Wait a moment for fade-out, then show new content
+        setTimeout(() => {
+            this.showSectionSpecificContent();
+        }, 200);
+    }
+
+    hideAllOverlays() {
+        const overlays = [
+            ...document.querySelectorAll('.chart-container'),
+            document.getElementById('performanceOverlay'),
+            document.getElementById('legendOverlay'),
+            document.getElementById('carbonNFTOverlay')
+        ];
+        
+        overlays.forEach(overlay => {
+            if (overlay) {
+                overlay.classList.remove('active');
+                overlay.style.opacity = '0';
+                overlay.style.transform = 'translateY(10px)';
+            }
         });
-        document.getElementById('performanceOverlay').classList.remove('active');
-        document.getElementById('legendOverlay').classList.remove('active');
-        document.getElementById('carbonNFTOverlay').classList.remove('active');
+    }
 
-        // Mapbox 3-D context layer removed
-
-        // Show relevant chart and update visualization for current section
+    showSectionSpecificContent() {
         switch (this.currentSection) {
             case 0: // Advanced STGNNs
-                this.animateCamera(0, 150, 400, 2000);
-                document.getElementById('segmentationChart').classList.add('active');
-                this.updatePointCloudVisualization('segmentation');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showSTGNNSection();
                 break;
             case 1: // Investment Optimization
-                this.animateCamera(150, 100, 300, 2000);
-                document.getElementById('thermalChart').classList.add('active');
-                this.updatePointCloudVisualization('thermal');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showInvestmentSection();
                 break;
             case 2: // Multi-Modal Data Lake
-                this.animateCamera(-100, 120, 250, 2000);
-                document.getElementById('componentsChart').classList.add('active');
-                this.updatePointCloudVisualization('components');
-                this.showBoundingBoxes(true);
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showDataLakeSection();
                 break;
             case 3: // Carbon Intelligence
-                this.animateCamera(200, 80, 350, 2000);
-                document.getElementById('climateChart').classList.add('active');
-                this.updatePointCloudVisualization('risk');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showCarbonSection();
                 break;
-            case 4: // Digital Twin Engine (Carbon NFT - stays at bottom)
-                this.animateCamera(0, 250, 500, 2000);
-                this.updatePointCloudVisualization('carbon');
-                this.showCarbonNFT();
+            case 4: // Digital Twin Engine
+                this.showDigitalTwinSection();
                 break;
             case 5: // Carbon-Aware Infrastructure
-                this.animateCamera(0, 250, 500, 2000);
-                document.getElementById('climateChart').classList.add('active');
-                this.updatePointCloudVisualization('climate');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showInfrastructureSection();
                 break;
             case 6: // Hybrid SAM-GNN Pipeline
-                this.animateCamera(0, 250, 500, 2000);
-                document.getElementById('roiChart').classList.add('active');
-                this.updatePointCloudVisualization('roi');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
+                this.showSAMGNNSection();
                 break;
+        }
+    }
+
+    showSTGNNSection() {
+        this.animateCamera(0, 150, 400, 2000);
+        this.fadeInOverlay('segmentationChart');
+        this.updatePointCloudVisualization('segmentation');
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    showInvestmentSection() {
+        this.animateCamera(150, 100, 300, 2000);
+        this.fadeInOverlay('thermalChart');
+        this.updatePointCloudVisualization('thermal');
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    showDataLakeSection() {
+        this.animateCamera(-100, 120, 250, 2000);
+        this.fadeInOverlay('componentsChart');
+        this.updatePointCloudVisualization('components');
+        this.showBoundingBoxes(true);
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    showCarbonSection() {
+        this.animateCamera(200, 80, 350, 2000);
+        this.fadeInOverlay('climateChart');
+        this.updatePointCloudVisualization('risk');
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    showDigitalTwinSection() {
+        this.animateCamera(0, 250, 500, 2000);
+        this.updatePointCloudVisualization('carbon');
+        this.fadeInOverlay('carbonNFTOverlay');
+    }
+
+    showInfrastructureSection() {
+        this.animateCamera(0, 250, 500, 2000);
+        this.fadeInOverlay('climateChart');
+        this.updatePointCloudVisualization('climate');
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    showSAMGNNSection() {
+        this.animateCamera(0, 250, 500, 2000);
+        this.fadeInOverlay('roiChart');
+        this.updatePointCloudVisualization('roi');
+        this.fadeInOverlay('performanceOverlay');
+        this.fadeInOverlay('legendOverlay');
+    }
+
+    fadeInOverlay(overlayId) {
+        const overlay = document.getElementById(overlayId);
+        if (overlay) {
+            overlay.classList.add('active');
+            overlay.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            overlay.style.opacity = '1';
+            overlay.style.transform = 'translateY(0)';
         }
     }
 
