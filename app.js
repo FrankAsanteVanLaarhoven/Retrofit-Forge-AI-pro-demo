@@ -243,15 +243,15 @@ class RetrofitForge3DPlatform {
                 
                 // Set specific positions for each overlay
                 if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '140px', 'important');
-                    overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
                     overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '320px', 'important');
+                    overlay.style.setProperty('max-width', '300px', 'important');
                 } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '140px', 'important');
-                    overlay.style.setProperty('right', '30px', 'important');
+                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('right', '20px', 'important');
                     overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '280px', 'important');
+                    overlay.style.setProperty('max-width', '260px', 'important');
                 } else if (overlayId === 'chartsOverlay') {
                     overlay.style.setProperty('bottom', '30px', 'important');
                     overlay.style.setProperty('left', '50%', 'important');
@@ -1463,15 +1463,15 @@ class RetrofitForge3DPlatform {
                 
                 // Set specific positions for each overlay
                 if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '140px', 'important');
-                    overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
                     overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '320px', 'important');
+                    overlay.style.setProperty('max-width', '300px', 'important');
                 } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '140px', 'important');
-                    overlay.style.setProperty('right', '30px', 'important');
+                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('right', '20px', 'important');
                     overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '280px', 'important');
+                    overlay.style.setProperty('max-width', '260px', 'important');
                 } else if (overlayId === 'chartsOverlay') {
                     overlay.style.setProperty('bottom', '30px', 'important');
                     overlay.style.setProperty('left', '50%', 'important');
