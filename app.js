@@ -191,6 +191,8 @@ class RetrofitForge3DPlatform {
                 console.log('Charts initialized');
                 this.initializeOverlayPositions();
                 console.log('Overlay positions initialized');
+                this.initializeFixedSectionIndicator();
+                console.log('Fixed section indicator initialized');
                 this.updateROIMetrics();
                 console.log('ROI metrics updated');
                 this.updateClimateRisk();
@@ -272,6 +274,29 @@ class RetrofitForge3DPlatform {
             chart.style.setProperty('transform', 'none', 'important');
             chart.style.setProperty('opacity', '0', 'important');
         });
+    }
+
+    initializeFixedSectionIndicator() {
+        // Initialize the fixed section indicator with the first section
+        const firstSection = this.sections[0];
+        if (firstSection) {
+            document.getElementById('fixedSectionNum').textContent = '1';
+            document.getElementById('fixedSectionLabel').textContent = firstSection.name;
+        }
+        
+        // Ensure the fixed section indicator is always visible and positioned correctly
+        const indicator = document.getElementById('fixedSectionIndicator');
+        if (indicator) {
+            // Force the fixed positioning
+            indicator.style.setProperty('position', 'fixed', 'important');
+            indicator.style.setProperty('top', '100px', 'important');
+            indicator.style.setProperty('left', '50%', 'important');
+            indicator.style.setProperty('transform', 'translateX(-50%)', 'important');
+            indicator.style.setProperty('z-index', '1000', 'important');
+            indicator.style.setProperty('opacity', '1', 'important');
+            indicator.style.setProperty('pointer-events', 'none', 'important');
+            indicator.style.setProperty('user-select', 'none', 'important');
+        }
     }
 
     setupEventListeners() {
@@ -1246,6 +1271,10 @@ class RetrofitForge3DPlatform {
         document.getElementById('currentSectionNum').textContent = this.currentSection + 1;
         document.getElementById('currentSectionName').textContent = section.name;
         document.getElementById('currentSectionDesc').textContent = section.description;
+
+        // Update fixed section indicator - ALWAYS in the same position
+        document.getElementById('fixedSectionNum').textContent = this.currentSection + 1;
+        document.getElementById('fixedSectionLabel').textContent = section.name;
 
         // Update progress indicators
         document.querySelectorAll('.indicator').forEach((indicator, index) => {
