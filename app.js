@@ -1241,10 +1241,13 @@ class RetrofitForge3DPlatform {
                 overlay.style.removeProperty('right');
                 overlay.style.removeProperty('position');
                 overlay.style.removeProperty('animation');
+                overlay.style.removeProperty('cursor');
                 
-                // Ensure fixed positioning
+                // Ensure fixed positioning and prevent drag cursors
                 overlay.style.setProperty('position', 'fixed', 'important');
                 overlay.style.setProperty('animation', 'none', 'important');
+                overlay.style.setProperty('cursor', 'default', 'important');
+                overlay.style.setProperty('user-select', 'none', 'important');
             }
         });
     }

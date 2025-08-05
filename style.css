@@ -651,6 +651,9 @@ body::before {
     pointer-events: none;
     /* Prevent any animation or transform changes */
     animation: none !important;
+    /* Explicitly prevent drag cursors */
+    cursor: default !important;
+    user-select: none !important;
 }
 
 .performance-overlay.active {
@@ -736,6 +739,9 @@ body::before {
     pointer-events: none;
     /* Prevent any animation or transform changes */
     animation: none !important;
+    /* Explicitly prevent drag cursors */
+    cursor: default !important;
+    user-select: none !important;
 }
 
 .charts-overlay:hover {
@@ -762,6 +768,9 @@ body::before {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     /* Fixed positioning */
     pointer-events: auto;
+    /* Explicitly prevent drag cursors */
+    cursor: default !important;
+    user-select: none !important;
 }
 
 .chart-container.active {
@@ -808,6 +817,9 @@ body::before {
     pointer-events: none;
     /* Prevent any animation or transform changes */
     animation: none !important;
+    /* Explicitly prevent drag cursors */
+    cursor: default !important;
+    user-select: none !important;
 }
 
 .legend-overlay.active {
@@ -873,6 +885,9 @@ body::before {
     pointer-events: none;
     /* Prevent any animation or transform changes */
     animation: none !important;
+    /* Explicitly prevent drag cursors */
+    cursor: default !important;
+    user-select: none !important;
 }
 
 .carbon-nft-overlay.active {
