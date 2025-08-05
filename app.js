@@ -189,10 +189,6 @@ class RetrofitForge3DPlatform {
                 console.log('Point cloud created');
             this.initCharts();
                 console.log('Charts initialized');
-                this.initializeOverlayPositions();
-                console.log('Overlay positions initialized');
-                this.initializeFixedSectionIndicator();
-                console.log('Fixed section indicator initialized');
                 this.updateROIMetrics();
                 console.log('ROI metrics updated');
                 this.updateClimateRisk();
@@ -221,82 +217,6 @@ class RetrofitForge3DPlatform {
                 console.error('Error during initialization:', error);
             }
         }, 1000);
-    }
-
-    initializeOverlayPositions() {
-        // Initialize all overlays with their fixed positions
-        const overlays = [
-            'chartsOverlay',
-            'legendOverlay', 
-            'performanceOverlay',
-            'carbonNFTOverlay'
-        ];
-        
-        overlays.forEach(overlayId => {
-            const overlay = document.getElementById(overlayId);
-            if (overlay) {
-                // Set initial fixed positioning
-                overlay.style.setProperty('position', 'fixed', 'important');
-                overlay.style.setProperty('animation', 'none', 'important');
-                overlay.style.setProperty('cursor', 'default', 'important');
-                overlay.style.setProperty('user-select', 'none', 'important');
-                overlay.style.setProperty('transform', 'none', 'important');
-                overlay.style.setProperty('opacity', '0', 'important');
-                
-                // Set specific positions for each overlay
-                if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '120px', 'important');
-                    overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
-                    overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '300px', 'important');
-                } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '120px', 'important');
-                    overlay.style.setProperty('right', '20px', 'important');
-                    overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '260px', 'important');
-                } else if (overlayId === 'chartsOverlay') {
-                    overlay.style.setProperty('bottom', '30px', 'important');
-                    overlay.style.setProperty('left', '50%', 'important');
-                    overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
-                } else if (overlayId === 'carbonNFTOverlay') {
-                    overlay.style.setProperty('bottom', '30px', 'important');
-                    overlay.style.setProperty('right', '30px', 'important');
-                }
-            }
-        });
-        
-        // Initialize chart containers
-        document.querySelectorAll('.chart-container').forEach(chart => {
-            chart.style.setProperty('position', 'relative', 'important');
-            chart.style.setProperty('animation', 'none', 'important');
-            chart.style.setProperty('cursor', 'default', 'important');
-            chart.style.setProperty('user-select', 'none', 'important');
-            chart.style.setProperty('transform', 'none', 'important');
-            chart.style.setProperty('opacity', '0', 'important');
-        });
-    }
-
-    initializeFixedSectionIndicator() {
-        // Initialize the fixed section indicator with the first section
-        const firstSection = this.sections[0];
-        if (firstSection) {
-            document.getElementById('fixedSectionNum').textContent = '1';
-            document.getElementById('fixedSectionLabel').textContent = firstSection.name;
-        }
-        
-        // Ensure the fixed section indicator is always visible and positioned correctly
-        const indicator = document.getElementById('fixedSectionIndicator');
-        if (indicator) {
-            // Force the fixed positioning
-            indicator.style.setProperty('position', 'fixed', 'important');
-            indicator.style.setProperty('top', '100px', 'important');
-            indicator.style.setProperty('left', '50%', 'important');
-            indicator.style.setProperty('transform', 'translateX(-50%)', 'important');
-            indicator.style.setProperty('z-index', '1000', 'important');
-            indicator.style.setProperty('opacity', '1', 'important');
-            indicator.style.setProperty('pointer-events', 'none', 'important');
-            indicator.style.setProperty('user-select', 'none', 'important');
-        }
     }
 
     setupEventListeners() {
@@ -404,11 +324,96 @@ class RetrofitForge3DPlatform {
         }, 2500);
     }
 
-    // setupDraggableCharts() - DISABLED for fixed positioning
-    // Charts are now positioned with fixed CSS positioning for consistent display
     setupDraggableCharts() {
-        // Draggable functionality disabled - charts now use fixed positioning
-        console.log('Draggable charts disabled - using fixed positioning for consistent display');
+        try {
+            const chartsOverlay = document.getElementById('chartsOverlay');
+            if (!chartsOverlay) {
+                console.log('Charts overlay not found, skipping draggable setup');
+                return;
+            }
+
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        // No movement constraints - completely free dragging
+        // Removed all movement limits for unrestricted dragging
+
+        const dragStart = (e) => {
+            // Only allow dragging if clicking directly on the charts overlay or its children
+            if (e.target === chartsOverlay || chartsOverlay.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                }
+                
+                isDragging = true;
+            }
+        };
+
+        const dragEnd = (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+            }
+        };
+
+        const drag = (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                let newX, newY;
+
+                if (e.type === "touchmove") {
+                    newX = e.touches[0].clientX - initialX;
+                    newY = e.touches[0].clientY - initialY;
+                } else {
+                    newX = e.clientX - initialX;
+                    newY = e.clientY - initialY;
+                }
+
+                // No constraints - completely free movement
+                currentX = newX;
+                currentY = newY;
+                xOffset = currentX;
+                yOffset = currentY;
+                setTranslate(currentX, currentY, chartsOverlay);
+                
+                // Remove boundary feedback since there are no limits
+                chartsOverlay.classList.remove('at-boundary');
+            }
+        };
+
+        const setTranslate = (xPos, yPos, el) => {
+            el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+        };
+
+        // Mouse events
+        chartsOverlay.addEventListener("mousedown", dragStart);
+        document.addEventListener("mousemove", drag);
+        document.addEventListener("mouseup", dragEnd);
+
+        // Touch events
+        chartsOverlay.addEventListener("touchstart", dragStart);
+        document.addEventListener("touchmove", drag);
+        document.addEventListener("touchend", dragEnd);
+        } catch (error) {
+            console.error('Error setting up draggable charts:', error);
+        }
     }
 
     initThreeJS() {
@@ -1146,41 +1151,46 @@ class RetrofitForge3DPlatform {
     }
 
     startPresentation() {
-        console.log('Starting new slideshow presentation...');
-        this.currentSection = 0;
-        this.isPlaying = true;
         this.updateSection();
-        this.startSlideshowTimer();
+        if (this.isPlaying) {
+            this.scheduleNextSection();
+        }
     }
 
-    startSlideshowTimer() {
+    scheduleNextSection() {
         if (this.sectionTimer) {
             clearTimeout(this.sectionTimer);
         }
         
-        if (this.isPlaying) {
-            this.sectionTimer = setTimeout(() => {
+        this.sectionTimer = setTimeout(() => {
+            if (this.isPlaying) {
                 this.nextSection();
-            }, 8000); // 8 seconds per slide
-        }
+            }
+        }, this.sections[this.currentSection].duration);
     }
 
     nextSection() {
         this.currentSection = (this.currentSection + 1) % this.sections.length;
         this.updateSection();
-        this.startSlideshowTimer();
+        if (this.isPlaying) {
+            this.scheduleNextSection();
+        }
     }
 
     previousSection() {
         this.currentSection = (this.currentSection - 1 + this.sections.length) % this.sections.length;
         this.updateSection();
-        this.startSlideshowTimer();
+        if (this.isPlaying) {
+            this.scheduleNextSection();
+        }
     }
 
     goToSection(index) {
         this.currentSection = index;
         this.updateSection();
-        this.startSlideshowTimer();
+        if (this.isPlaying) {
+            this.scheduleNextSection();
+        }
     }
 
     togglePlayPause() {
@@ -1191,7 +1201,7 @@ class RetrofitForge3DPlatform {
         if (this.isPlaying) {
             playPauseIcon.textContent = '⏸️';
             playPauseText.textContent = 'Pause';
-            this.startSlideshowTimer();
+            this.scheduleNextSection();
         } else {
             playPauseIcon.textContent = '▶️';
             playPauseText.textContent = 'Play';
@@ -1203,327 +1213,104 @@ class RetrofitForge3DPlatform {
 
     updateSection() {
         const section = this.sections[this.currentSection];
+        const sectionIndicator = document.getElementById('fixedSectionIndicator');
         
-        // Smooth transition effect
-        this.fadeOutCurrentContent();
+        // Add transition animation
+        sectionIndicator.classList.add('section-changing');
         
+        // Update UI with slight delay for smooth transition
         setTimeout(() => {
-            // Update UI elements
-            this.updateSectionUI(section);
+            document.getElementById('currentSectionNum').textContent = this.currentSection + 1;
+            document.getElementById('currentSectionName').textContent = section.name;
+            document.getElementById('currentSectionDesc').textContent = section.description;
             
-            // Show new content with fade-in effect
-            this.fadeInNewContent();
-            
-            // Update progress
-            this.updateProgress();
-            
-        }, 300); // Wait for fade-out
-    }
-
-    fadeOutCurrentContent() {
-        const elements = [
-            document.getElementById('currentSectionName'),
-            document.getElementById('currentSectionDesc'),
-            ...document.querySelectorAll('.chart-container'),
-            document.getElementById('performanceOverlay'),
-            document.getElementById('legendOverlay'),
-            document.getElementById('carbonNFTOverlay')
-        ];
-        
-        elements.forEach(el => {
-            if (el) {
-                // Only change opacity, not position
-                el.style.opacity = '0';
-                
-                // Ensure overlays maintain fixed positioning
-                if (el.classList.contains('chart-container') || 
-                    el.id === 'performanceOverlay' || 
-                    el.id === 'legendOverlay' || 
-                    el.id === 'carbonNFTOverlay') {
-                    
-                    el.style.setProperty('position', 'fixed', 'important');
-                    el.style.setProperty('animation', 'none', 'important');
-                    el.style.setProperty('cursor', 'default', 'important');
-                    el.style.setProperty('user-select', 'none', 'important');
-                    el.style.removeProperty('transform');
-                }
-            }
-        });
-    }
-
-    fadeInNewContent() {
-        const elements = [
-            document.getElementById('currentSectionName'),
-            document.getElementById('currentSectionDesc')
-        ];
-        
-        elements.forEach(el => {
-            if (el) {
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }
-        });
-    }
-
-    updateSectionUI(section) {
-        // Update section information
-        document.getElementById('currentSectionNum').textContent = this.currentSection + 1;
-        document.getElementById('currentSectionName').textContent = section.name;
-        document.getElementById('currentSectionDesc').textContent = section.description;
-
-        // Update fixed section indicator - ALWAYS in the same position
-        document.getElementById('fixedSectionNum').textContent = this.currentSection + 1;
-        document.getElementById('fixedSectionLabel').textContent = section.name;
+            // Remove transition class after content update
+            sectionIndicator.classList.remove('section-changing');
+        }, 150);
 
         // Update progress indicators
         document.querySelectorAll('.indicator').forEach((indicator, index) => {
             indicator.classList.toggle('active', index === this.currentSection);
         });
 
-        // Update slideshow progress indicator
-        this.updateSlideshowProgress();
+        // Update progress bar
+        const progress = ((this.currentSection + 1) / this.sections.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+
+        // Update scroll button states
+        try {
+            this.updateScrollButtonStates();
+        } catch (error) {
+            console.error('Error updating scroll button states in updateSection:', error);
+        }
 
         // Show appropriate visualizations
         this.showSectionContent();
     }
 
-    updateSlideshowProgress() {
-        const progressContainer = document.getElementById('slideshowProgress');
-        const indicators = progressContainer.querySelectorAll('.slide-indicator');
-        
-        // Show the progress indicator
-        progressContainer.classList.add('visible');
-        
-        // Update active indicator
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSection);
-        });
-        
-        // Hide progress indicator after 3 seconds
-        setTimeout(() => {
-            progressContainer.classList.remove('visible');
-        }, 3000);
-    }
-
-    updateProgress() {
-        const progress = ((this.currentSection + 1) / this.sections.length) * 100;
-        const progressBar = document.getElementById('progressBar');
-        if (progressBar) {
-            progressBar.style.width = `${progress}%`;
-        }
-    }
-
     showSectionContent() {
-        // Lock all overlay positions to prevent movement during slideshow
-        this.lockOverlayPositions();
-        
-        // Hide all charts and overlays with fade effect
-        this.hideAllOverlays();
-        
-        // Wait a moment for fade-out, then show new content
-        setTimeout(() => {
-            this.showSectionSpecificContent();
-        }, 200);
-    }
-
-    hideAllOverlays() {
-        const overlays = [
-            ...document.querySelectorAll('.chart-container'),
-            document.getElementById('performanceOverlay'),
-            document.getElementById('legendOverlay'),
-            document.getElementById('carbonNFTOverlay')
-        ];
-        
-        overlays.forEach(overlay => {
-            if (overlay) {
-                // Remove active class
-                overlay.classList.remove('active');
-                
-                // Only change opacity, not position
-                overlay.style.opacity = '0';
-                
-                // Ensure fixed positioning is maintained
-                overlay.style.setProperty('position', 'fixed', 'important');
-                overlay.style.setProperty('animation', 'none', 'important');
-                overlay.style.setProperty('cursor', 'default', 'important');
-                overlay.style.setProperty('user-select', 'none', 'important');
-                
-                // Remove any transform that might cause movement
-                overlay.style.removeProperty('transform');
-            }
+        // Hide all charts and overlays
+        document.querySelectorAll('.chart-container').forEach(chart => {
+            chart.classList.remove('active');
         });
-    }
+        document.getElementById('performanceOverlay').classList.remove('active');
+        document.getElementById('legendOverlay').classList.remove('active');
+        document.getElementById('carbonNFTOverlay').classList.remove('active');
 
-    showSectionSpecificContent() {
+        // Mapbox 3-D context layer removed
+
+        // Show relevant chart and update visualization for current section
         switch (this.currentSection) {
             case 0: // Advanced STGNNs
-                this.showSTGNNSection();
+                this.animateCamera(0, 150, 400, 2000);
+                document.getElementById('segmentationChart').classList.add('active');
+                this.updatePointCloudVisualization('segmentation');
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
             case 1: // Investment Optimization
-                this.showInvestmentSection();
+                this.animateCamera(150, 100, 300, 2000);
+                document.getElementById('thermalChart').classList.add('active');
+                this.updatePointCloudVisualization('thermal');
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
             case 2: // Multi-Modal Data Lake
-                this.showDataLakeSection();
+                this.animateCamera(-100, 120, 250, 2000);
+                document.getElementById('componentsChart').classList.add('active');
+                this.updatePointCloudVisualization('components');
+                this.showBoundingBoxes(true);
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
             case 3: // Carbon Intelligence
-                this.showCarbonSection();
+                this.animateCamera(200, 80, 350, 2000);
+                document.getElementById('climateChart').classList.add('active');
+                this.updatePointCloudVisualization('risk');
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
-            case 4: // Digital Twin Engine
-                this.showDigitalTwinSection();
+            case 4: // Digital Twin Engine (Carbon NFT - stays at bottom)
+                this.animateCamera(0, 250, 500, 2000);
+                this.updatePointCloudVisualization('carbon');
+                this.showCarbonNFT();
                 break;
             case 5: // Carbon-Aware Infrastructure
-                this.showInfrastructureSection();
+                this.animateCamera(0, 250, 500, 2000);
+                document.getElementById('climateChart').classList.add('active');
+                this.updatePointCloudVisualization('climate');
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
             case 6: // Hybrid SAM-GNN Pipeline
-                this.showSAMGNNSection();
+                this.animateCamera(0, 250, 500, 2000);
+                document.getElementById('roiChart').classList.add('active');
+                this.updatePointCloudVisualization('roi');
+                document.getElementById('performanceOverlay').classList.add('active');
+                document.getElementById('legendOverlay').classList.add('active');
                 break;
         }
-    }
-
-    showSTGNNSection() {
-        this.animateCamera(0, 150, 400, 2000);
-        this.fadeInOverlay('segmentationChart');
-        this.updatePointCloudVisualization('segmentation');
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    showInvestmentSection() {
-        this.animateCamera(150, 100, 300, 2000);
-        this.fadeInOverlay('thermalChart');
-        this.updatePointCloudVisualization('thermal');
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    showDataLakeSection() {
-        this.animateCamera(-100, 120, 250, 2000);
-        this.fadeInOverlay('componentsChart');
-        this.updatePointCloudVisualization('components');
-        this.showBoundingBoxes(true);
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    showCarbonSection() {
-        this.animateCamera(200, 80, 350, 2000);
-        this.fadeInOverlay('climateChart');
-        this.updatePointCloudVisualization('risk');
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    showDigitalTwinSection() {
-        this.animateCamera(0, 250, 500, 2000);
-        this.updatePointCloudVisualization('carbon');
-        this.fadeInOverlay('carbonNFTOverlay');
-    }
-
-    showInfrastructureSection() {
-        this.animateCamera(0, 250, 500, 2000);
-        this.fadeInOverlay('climateChart');
-        this.updatePointCloudVisualization('climate');
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    showSAMGNNSection() {
-        this.animateCamera(0, 250, 500, 2000);
-        this.fadeInOverlay('roiChart');
-        this.updatePointCloudVisualization('roi');
-        this.fadeInOverlay('performanceOverlay');
-        this.fadeInOverlay('legendOverlay');
-    }
-
-    fadeInOverlay(overlayId) {
-        const overlay = document.getElementById(overlayId);
-        if (overlay) {
-            // Force fixed positioning
-            overlay.style.setProperty('position', 'fixed', 'important');
-            overlay.style.setProperty('animation', 'none', 'important');
-            overlay.style.setProperty('cursor', 'default', 'important');
-            overlay.style.setProperty('user-select', 'none', 'important');
-            
-            // Set specific positions for each overlay
-            if (overlayId === 'performanceOverlay') {
-                overlay.style.setProperty('top', '120px', 'important');
-                overlay.style.setProperty('left', '370px', 'important');
-                overlay.style.setProperty('z-index', '15', 'important');
-                overlay.style.setProperty('max-width', '300px', 'important');
-            } else if (overlayId === 'legendOverlay') {
-                overlay.style.setProperty('top', '120px', 'important');
-                overlay.style.setProperty('right', '20px', 'important');
-                overlay.style.setProperty('z-index', '15', 'important');
-                overlay.style.setProperty('max-width', '260px', 'important');
-            } else if (overlayId === 'chartsOverlay') {
-                overlay.style.setProperty('bottom', '30px', 'important');
-                overlay.style.setProperty('left', '50%', 'important');
-                overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
-            } else if (overlayId === 'carbonNFTOverlay') {
-                overlay.style.setProperty('bottom', '30px', 'important');
-                overlay.style.setProperty('right', '30px', 'important');
-            }
-            
-            // Only animate opacity, not position
-            overlay.style.transition = 'opacity 0.8s ease';
-            overlay.style.opacity = '1';
-            
-            // Add active class
-            overlay.classList.add('active');
         }
-    }
-
-    lockOverlayPositions() {
-        // Force all overlays to maintain their fixed positions
-        const overlays = [
-            'chartsOverlay',
-            'legendOverlay', 
-            'performanceOverlay',
-            'carbonNFTOverlay'
-        ];
-        
-        overlays.forEach(overlayId => {
-            const overlay = document.getElementById(overlayId);
-            if (overlay) {
-                // Remove any inline styles that might override CSS
-                overlay.style.removeProperty('transform');
-                overlay.style.removeProperty('top');
-                overlay.style.removeProperty('bottom');
-                overlay.style.removeProperty('left');
-                overlay.style.removeProperty('right');
-                overlay.style.removeProperty('position');
-                overlay.style.removeProperty('animation');
-                overlay.style.removeProperty('cursor');
-                
-                // Ensure fixed positioning and prevent drag cursors
-                overlay.style.setProperty('position', 'fixed', 'important');
-                overlay.style.setProperty('animation', 'none', 'important');
-                overlay.style.setProperty('cursor', 'default', 'important');
-                overlay.style.setProperty('user-select', 'none', 'important');
-                
-                // Set specific positions for each overlay
-                if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '120px', 'important');
-                    overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
-                    overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '300px', 'important');
-                } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '120px', 'important');
-                    overlay.style.setProperty('right', '20px', 'important');
-                    overlay.style.setProperty('z-index', '15', 'important');
-                    overlay.style.setProperty('max-width', '260px', 'important');
-                } else if (overlayId === 'chartsOverlay') {
-                    overlay.style.setProperty('bottom', '30px', 'important');
-                    overlay.style.setProperty('left', '50%', 'important');
-                    overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
-                } else if (overlayId === 'carbonNFTOverlay') {
-                    overlay.style.setProperty('bottom', '30px', 'important');
-                    overlay.style.setProperty('right', '30px', 'important');
-                }
-            }
-        });
-    }
 
     showCarbonNFT() {
         document.getElementById('carbonNFTOverlay').classList.add('active');
