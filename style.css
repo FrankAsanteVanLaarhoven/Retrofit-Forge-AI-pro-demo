@@ -233,11 +233,12 @@ body::before {
         inset 1px 0 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Fixed Section Indicator - Always in same position */
+/* Fixed Section Indicator - Streamlined bottom position */
 .fixed-section-indicator {
     position: fixed;
-    top: 120px; /* Below header */
-    left: 48px;
+    bottom: 40px; /* Fixed at bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
     z-index: 1000;
     background: rgba(20, 25, 38, 0.94);
     backdrop-filter: blur(15px);
@@ -250,6 +251,18 @@ body::before {
     min-width: 320px;
     max-width: 420px;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    animation: slideUpFromBottom 0.5s ease-out;
+}
+
+@keyframes slideUpFromBottom {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 .section-indicator-content {
@@ -283,7 +296,14 @@ body::before {
 /* Animation for section transitions */
 .fixed-section-indicator.section-changing {
     opacity: 0.7;
-    transform: scale(0.98);
+    transform: translateX(-50%) scale(0.98);
+}
+
+/* Mobile animation adjustment */
+@media (max-width: 768px) {
+    .fixed-section-indicator.section-changing {
+        transform: scale(0.98); /* Remove translateX on mobile */
+    }
 }
 
 /* Legacy section-info styles (kept for compatibility) */
@@ -1121,9 +1141,10 @@ body::before {
     /* Fixed section indicator responsive design */
     .fixed-section-indicator {
         position: fixed;
-        top: 140px; /* Adjusted for mobile header */
+        bottom: 20px; /* Keep at bottom on mobile */
         left: 20px;
         right: 20px;
+        transform: none; /* Remove centering transform on mobile */
         min-width: auto;
         max-width: none;
         width: calc(100vw - 40px);
