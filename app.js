@@ -245,9 +245,13 @@ class RetrofitForge3DPlatform {
                 if (overlayId === 'performanceOverlay') {
                     overlay.style.setProperty('top', '140px', 'important');
                     overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                    overlay.style.setProperty('z-index', '15', 'important');
+                    overlay.style.setProperty('max-width', '320px', 'important');
                 } else if (overlayId === 'legendOverlay') {
                     overlay.style.setProperty('top', '140px', 'important');
                     overlay.style.setProperty('right', '30px', 'important');
+                    overlay.style.setProperty('z-index', '15', 'important');
+                    overlay.style.setProperty('max-width', '280px', 'important');
                 } else if (overlayId === 'chartsOverlay') {
                     overlay.style.setProperty('bottom', '30px', 'important');
                     overlay.style.setProperty('left', '50%', 'important');
@@ -1461,9 +1465,13 @@ class RetrofitForge3DPlatform {
                 if (overlayId === 'performanceOverlay') {
                     overlay.style.setProperty('top', '140px', 'important');
                     overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                    overlay.style.setProperty('z-index', '15', 'important');
+                    overlay.style.setProperty('max-width', '320px', 'important');
                 } else if (overlayId === 'legendOverlay') {
                     overlay.style.setProperty('top', '140px', 'important');
                     overlay.style.setProperty('right', '30px', 'important');
+                    overlay.style.setProperty('z-index', '15', 'important');
+                    overlay.style.setProperty('max-width', '280px', 'important');
                 } else if (overlayId === 'chartsOverlay') {
                     overlay.style.setProperty('bottom', '30px', 'important');
                     overlay.style.setProperty('left', '50%', 'important');

@@ -643,9 +643,9 @@ body::before {
     position: fixed !important;
     top: 140px !important;
     left: 390px !important; /* 350px sidebar + 40px margin */
-    z-index: 10;
+    z-index: 15;
     opacity: 0;
-    transform: translateY(0) !important;
+    transform: none !important;
     transition: opacity 0.5s ease;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
@@ -654,6 +654,8 @@ body::before {
     /* Explicitly prevent drag cursors */
     cursor: default !important;
     user-select: none !important;
+    /* Ensure it stays in top left corner of main display */
+    max-width: 320px;
 }
 
 .performance-overlay.active {
@@ -869,9 +871,9 @@ body::before {
     position: fixed !important;
     top: 140px !important;
     right: 30px !important;
-    z-index: 10;
+    z-index: 15;
     opacity: 0;
-    transform: translateX(0) !important;
+    transform: none !important;
     transition: opacity 0.5s ease;
     /* Fixed positioning to prevent movement */
     pointer-events: none;
@@ -880,6 +882,8 @@ body::before {
     /* Explicitly prevent drag cursors */
     cursor: default !important;
     user-select: none !important;
+    /* Ensure it stays in top right corner */
+    max-width: 280px;
 }
 
 .legend-overlay.active {
