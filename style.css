@@ -642,7 +642,7 @@ body::before {
 .performance-overlay {
     position: fixed !important;
     top: 140px !important;
-    left: 30px !important;
+    left: 390px !important; /* 350px sidebar + 40px margin */
     z-index: 10;
     opacity: 0;
     transform: translateY(0) !important;

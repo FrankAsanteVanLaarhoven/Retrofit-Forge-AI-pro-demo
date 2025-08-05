@@ -240,6 +240,22 @@ class RetrofitForge3DPlatform {
                 overlay.style.setProperty('user-select', 'none', 'important');
                 overlay.style.setProperty('transform', 'none', 'important');
                 overlay.style.setProperty('opacity', '0', 'important');
+                
+                // Set specific positions for each overlay
+                if (overlayId === 'performanceOverlay') {
+                    overlay.style.setProperty('top', '140px', 'important');
+                    overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                } else if (overlayId === 'legendOverlay') {
+                    overlay.style.setProperty('top', '140px', 'important');
+                    overlay.style.setProperty('right', '30px', 'important');
+                } else if (overlayId === 'chartsOverlay') {
+                    overlay.style.setProperty('bottom', '30px', 'important');
+                    overlay.style.setProperty('left', '50%', 'important');
+                    overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
+                } else if (overlayId === 'carbonNFTOverlay') {
+                    overlay.style.setProperty('bottom', '30px', 'important');
+                    overlay.style.setProperty('right', '30px', 'important');
+                }
             }
         });
         
@@ -1440,6 +1456,22 @@ class RetrofitForge3DPlatform {
                 overlay.style.setProperty('animation', 'none', 'important');
                 overlay.style.setProperty('cursor', 'default', 'important');
                 overlay.style.setProperty('user-select', 'none', 'important');
+                
+                // Set specific positions for each overlay
+                if (overlayId === 'performanceOverlay') {
+                    overlay.style.setProperty('top', '140px', 'important');
+                    overlay.style.setProperty('left', '390px', 'important'); // 350px sidebar + 40px margin
+                } else if (overlayId === 'legendOverlay') {
+                    overlay.style.setProperty('top', '140px', 'important');
+                    overlay.style.setProperty('right', '30px', 'important');
+                } else if (overlayId === 'chartsOverlay') {
+                    overlay.style.setProperty('bottom', '30px', 'important');
+                    overlay.style.setProperty('left', '50%', 'important');
+                    overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
+                } else if (overlayId === 'carbonNFTOverlay') {
+                    overlay.style.setProperty('bottom', '30px', 'important');
+                    overlay.style.setProperty('right', '30px', 'important');
+                }
             }
         });
     }
