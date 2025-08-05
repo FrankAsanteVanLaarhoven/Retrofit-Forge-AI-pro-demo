@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox Test - Minimal Setup</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        #root {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        #threeCanvas {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        #mapboxView {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 30vh;
+            background: #000;
+            z-index: 1;
+            opacity: 0.92;
+            min-height: 180px;
+        }
+        
+        .test-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+        
+        .status {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .status.success { background: #059669; }
+        .status.error { background: #dc2626; }
+        .status.info { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div id="threeCanvas">
+            Three.js Scene Area (Simulated)
+        </div>
+        
+        <div id="mapboxView"></div>
+        
+        <div class="test-info">
+            <h3>Mapbox Test Results</h3>
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        
+        function addStatus(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            statusDiv.appendChild(div);
+            console.log(message);
+        }
+        
+        addStatus('Starting Mapbox test...', 'info');
+        
+        // Test 1: Check access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        
+        if (mapboxgl.accessToken) {
+            addStatus('✅ Access token present', 'success');
+        } else {
+            addStatus('❌ Access token missing', 'error');
+        }
+        
+        // Test 2: Check container
+        const container = document.getElementById('mapboxView');
+        if (container) {
+            const rect = container.getBoundingClientRect();
+            addStatus(`✅ Container found: ${rect.width}x${rect.height}`, 'success');
+            
+            if (rect.height === 0) {
+                addStatus('❌ Container has zero height!', 'error');
+            }
+        } else {
+            addStatus('❌ Container not found', 'error');
+        }
+        
+        // Test 3: Create map
+        try {
+            addStatus('Creating Mapbox instance...', 'info');
+            
+            const map = new mapboxgl.Map({
+                container: 'mapboxView',
+                style: 'mapbox://styles/mapbox/light-v11',
+                center: [-0.12, 51.51],
+                zoom: 12,
+                pitch: 60,
+                bearing: -20,
+                interactive: true
+            });
+            
+            map.on('load', () => {
+                addStatus('✅ Mapbox style loaded successfully!', 'success');
+            });
+            
+            map.on('error', (e) => {
+                addStatus(`❌ Mapbox error: ${e.error}`, 'error');
+            });
+            
+            map.on('styledata', () => {
+                addStatus('✅ Style data loaded', 'success');
+            });
+            
+            addStatus('✅ Mapbox instance created', 'success');
+            
+        } catch (error) {
+            addStatus(`❌ Failed to create map: ${error.message}`, 'error');
+        }
+        
+        // Test 4: Check network requests
+        setTimeout(() => {
+            addStatus('Check Network tab for style.json, sprite.png, glyphs.pbf', 'info');
+        }, 2000);
+    </script>
+</body>
+</html> 
