@@ -324,96 +324,11 @@ class RetrofitForge3DPlatform {
         }, 2500);
     }
 
+    // setupDraggableCharts() - DISABLED for fixed positioning
+    // Charts are now positioned with fixed CSS positioning for consistent display
     setupDraggableCharts() {
-        try {
-            const chartsOverlay = document.getElementById('chartsOverlay');
-            if (!chartsOverlay) {
-                console.log('Charts overlay not found, skipping draggable setup');
-                return;
-            }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        // No movement constraints - completely free dragging
-        // Removed all movement limits for unrestricted dragging
-
-        const dragStart = (e) => {
-            // Only allow dragging if clicking directly on the charts overlay or its children
-            if (e.target === chartsOverlay || chartsOverlay.contains(e.target)) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (e.type === "touchstart") {
-                    initialX = e.touches[0].clientX - xOffset;
-                    initialY = e.touches[0].clientY - yOffset;
-                } else {
-                    initialX = e.clientX - xOffset;
-                    initialY = e.clientY - yOffset;
-                }
-                
-                isDragging = true;
-            }
-        };
-
-        const dragEnd = (e) => {
-            if (isDragging) {
-                e.preventDefault();
-                e.stopPropagation();
-                initialX = currentX;
-                initialY = currentY;
-                isDragging = false;
-            }
-        };
-
-        const drag = (e) => {
-            if (isDragging) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                let newX, newY;
-
-                if (e.type === "touchmove") {
-                    newX = e.touches[0].clientX - initialX;
-                    newY = e.touches[0].clientY - initialY;
-                } else {
-                    newX = e.clientX - initialX;
-                    newY = e.clientY - initialY;
-                }
-
-                // No constraints - completely free movement
-                currentX = newX;
-                currentY = newY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, chartsOverlay);
-                
-                // Remove boundary feedback since there are no limits
-                chartsOverlay.classList.remove('at-boundary');
-            }
-        };
-
-        const setTranslate = (xPos, yPos, el) => {
-            el.style.transform = `translate(${xPos}px, ${yPos}px)`;
-        };
-
-        // Mouse events
-        chartsOverlay.addEventListener("mousedown", dragStart);
-        document.addEventListener("mousemove", drag);
-        document.addEventListener("mouseup", dragEnd);
-
-        // Touch events
-        chartsOverlay.addEventListener("touchstart", dragStart);
-        document.addEventListener("touchmove", drag);
-        document.addEventListener("touchend", dragEnd);
-        } catch (error) {
-            console.error('Error setting up draggable charts:', error);
-        }
+        // Draggable functionality disabled - charts now use fixed positioning
+        console.log('Draggable charts disabled - using fixed positioning for consistent display');
     }
 
     initThreeJS() {

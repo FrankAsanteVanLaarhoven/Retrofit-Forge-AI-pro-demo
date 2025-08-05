@@ -640,13 +640,15 @@ body::before {
 
 /* Enhanced Performance Overlays */
 .performance-overlay {
-  position: absolute;
-    top: 20px;
-    left: 20px;
+    position: fixed;
+    top: 140px;
+    left: 30px;
     z-index: 10;
-  opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.5s ease;
+    /* Fixed positioning to prevent movement */
+    pointer-events: none;
 }
 
 .performance-overlay.active {
@@ -712,31 +714,30 @@ body::before {
     color: #475569;
 }
 
-/* Enhanced Chart Overlays */
+/* Enhanced Chart Overlays - Fixed Positioning */
 .charts-overlay {
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     max-width: 800px;
     width: 90%;
-    cursor: move;
-    user-select: none;
-    transition: transform 0.1s ease; /* Smooth transform transitions */
+    /* Remove cursor: move and user-select to prevent dragging */
+    transition: opacity 0.3s ease;
     border: 2px solid transparent;
     opacity: 1;
     visibility: visible;
     /* Ensure no overflow constraints */
     overflow: visible;
+    /* Fixed positioning to prevent movement */
+    pointer-events: none;
 }
 
 .charts-overlay:hover {
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
-
-/* Removed boundary feedback since dragging is now unlimited */
 
 .chart-container {
     background: rgba(255, 255, 255, 0.1);
@@ -747,7 +748,7 @@ body::before {
     height: 300px;
     width: 100%;
     position: relative;
-  opacity: 0;
+    opacity: 0;
     transform: translateY(20px);
     transition: all 0.5s ease;
     backdrop-filter: blur(20px) saturate(180%);
@@ -755,27 +756,58 @@ body::before {
         0 4px 16px rgba(31, 41, 55, 0.1),
         0 0 40px rgba(148, 163, 184, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Fixed positioning */
+    pointer-events: auto;
 }
 
 .chart-container.active {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Enhanced 3D Legend */
+/* Specific chart positioning for consistent display */
+#segmentationChart {
+    position: relative;
+    z-index: 1;
+}
+
+#thermalChart {
+    position: relative;
+    z-index: 2;
+}
+
+#componentsChart {
+    position: relative;
+    z-index: 3;
+}
+
+#roiChart {
+    position: relative;
+    z-index: 4;
+}
+
+#climateChart {
+    position: relative;
+    z-index: 5;
+}
+
+/* Enhanced 3D Legend - Fixed Positioning */
 .legend-overlay {
-  position: absolute;
-    top: 20px;
-    right: 20px;
+    position: fixed;
+    top: 140px;
+    right: 30px;
     z-index: 10;
     opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.5s ease;
+    transform: translateX(0);
+    transition: opacity 0.5s ease;
+    /* Fixed positioning to prevent movement */
+    pointer-events: none;
 }
 
 .legend-overlay.active {
-  opacity: 1;
+    opacity: 1;
     transform: translateX(0);
+    pointer-events: auto;
 }
 
 .legend-content {
@@ -822,15 +854,17 @@ body::before {
     color: #64748b;
 }
 
-/* Carbon Credit NFT Display */
+/* Carbon Credit NFT Display - Fixed Positioning */
 .carbon-nft-overlay {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
     z-index: 10;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
+    transform: translateY(0);
+    transition: opacity 0.5s ease;
+    /* Fixed positioning to prevent movement */
+    pointer-events: none;
 }
 
 .carbon-nft-overlay.active {
