@@ -245,12 +245,12 @@ class RetrofitForge3DPlatform {
                 
                 // Set specific positions for each overlay
                 if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('top', '120px', 'important');
                     overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
                     overlay.style.setProperty('z-index', '15', 'important');
                     overlay.style.setProperty('max-width', '300px', 'important');
                 } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('top', '120px', 'important');
                     overlay.style.setProperty('right', '20px', 'important');
                     overlay.style.setProperty('z-index', '15', 'important');
                     overlay.style.setProperty('max-width', '260px', 'important');
@@ -1439,19 +1439,31 @@ class RetrofitForge3DPlatform {
     fadeInOverlay(overlayId) {
         const overlay = document.getElementById(overlayId);
         if (overlay) {
-            // Remove any conflicting inline styles
-            overlay.style.removeProperty('transform');
-            overlay.style.removeProperty('top');
-            overlay.style.removeProperty('bottom');
-            overlay.style.removeProperty('left');
-            overlay.style.removeProperty('right');
-            overlay.style.removeProperty('position');
-            
             // Force fixed positioning
             overlay.style.setProperty('position', 'fixed', 'important');
             overlay.style.setProperty('animation', 'none', 'important');
             overlay.style.setProperty('cursor', 'default', 'important');
             overlay.style.setProperty('user-select', 'none', 'important');
+            
+            // Set specific positions for each overlay
+            if (overlayId === 'performanceOverlay') {
+                overlay.style.setProperty('top', '120px', 'important');
+                overlay.style.setProperty('left', '370px', 'important');
+                overlay.style.setProperty('z-index', '15', 'important');
+                overlay.style.setProperty('max-width', '300px', 'important');
+            } else if (overlayId === 'legendOverlay') {
+                overlay.style.setProperty('top', '120px', 'important');
+                overlay.style.setProperty('right', '20px', 'important');
+                overlay.style.setProperty('z-index', '15', 'important');
+                overlay.style.setProperty('max-width', '260px', 'important');
+            } else if (overlayId === 'chartsOverlay') {
+                overlay.style.setProperty('bottom', '30px', 'important');
+                overlay.style.setProperty('left', '50%', 'important');
+                overlay.style.setProperty('transform', 'translateX(-50%)', 'important');
+            } else if (overlayId === 'carbonNFTOverlay') {
+                overlay.style.setProperty('bottom', '30px', 'important');
+                overlay.style.setProperty('right', '30px', 'important');
+            }
             
             // Only animate opacity, not position
             overlay.style.transition = 'opacity 0.8s ease';
@@ -1492,12 +1504,12 @@ class RetrofitForge3DPlatform {
                 
                 // Set specific positions for each overlay
                 if (overlayId === 'performanceOverlay') {
-                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('top', '120px', 'important');
                     overlay.style.setProperty('left', '370px', 'important'); // 350px sidebar + 20px margin
                     overlay.style.setProperty('z-index', '15', 'important');
                     overlay.style.setProperty('max-width', '300px', 'important');
                 } else if (overlayId === 'legendOverlay') {
-                    overlay.style.setProperty('top', '80px', 'important');
+                    overlay.style.setProperty('top', '120px', 'important');
                     overlay.style.setProperty('right', '20px', 'important');
                     overlay.style.setProperty('z-index', '15', 'important');
                     overlay.style.setProperty('max-width', '260px', 'important');
