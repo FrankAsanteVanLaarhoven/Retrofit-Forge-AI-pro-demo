@@ -1,5 +1,36 @@
 # RetrofitForge™ - Industry-Leading 3D Building Intelligence Platform
 
+## 🎬 **Live Demo Available!**
+
+**[🚀 Launch Digital Twin Demo](http://localhost:8001)** - Experience the full RetrofitForge-AI Digital Twin Engine with patent-pending STGNN technology, Cesium 3D visualization, and real-time analytics.
+
+### 🌐 **Demo Features:**
+- **Interactive 3D Building Model** - 22 Bishopsgate, London
+- **Real-time STGNN Analysis** - 1,847 building components
+- **Live Carbon Metrics** - 1,430 tCO₂e annual reduction
+- **Investment ROI** - +34.2% improvement potential
+- **ElevenLabs Voice Integration** - Premium audio narration
+- **Demo Control** - Start/Stop/Restart functionality
+
+### 🎯 **Quick Start:**
+```bash
+# Clone the repository
+git clone https://github.com/FrankAsanteVanLaarhoven/Retrofit-Forge-AI-pro-demo.git
+
+# Navigate to digital twin directory
+cd Retrofit-Forge-AI-pro-demo/digitatwin
+
+# Install dependencies
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Start the demo
+python3 start.py
+
+# Access demo at: http://localhost:8001
+```
+
 ## 🚀 Patent-Pending Technology Stack
 
 RetrofitForge is a revolutionary 3D building segmentation platform that combines cutting-edge AI with climate adaptation planning. Our **5 provisional patents** establish new industry benchmarks in building intelligence and carbon credit verification.
@@ -169,14 +200,85 @@ All analytics overlays (charts, KPIs, performance cards) follow the same pattern
 - **Climate Models** - Flood, heat stress, and storm risk data
 - **IoT Sensors** - Real-time building performance monitoring
 
+## 🎬 **Digital Twin Demo**
+
+### 🌐 **Live Demo Access**
+**[🚀 Launch Digital Twin Engine](http://localhost:8001)** - Experience the complete RetrofitForge-AI Digital Twin Engine with all premium features.
+
+### 🎯 **Demo Highlights**
+- **Interactive 3D Visualization** - Cesium-powered building model
+- **Real-time STGNN Analysis** - Patent-pending AI technology
+- **Live Carbon Metrics** - 1,430 tCO₂e annual reduction potential
+- **Investment ROI** - +34.2% improvement with STGNN optimization
+- **ElevenLabs Voice Integration** - Premium audio narration
+- **Demo Control System** - Start/Stop/Restart functionality
+
+### 🏗️ **Building Analysis**
+- **Target Building**: 22 Bishopsgate, London EC2
+- **Building Type**: Commercial Office Tower
+- **Height**: 278m, 62 floors
+- **Floor Area**: 121,000 m²
+- **Components Analyzed**: 1,847 elements
+
+### 📊 **Real-time Metrics**
+- **Active Models**: 2,537 (live count)
+- **Simulation Accuracy**: 96.6% (patent-pending)
+- **Processing Speed**: 2.1s (real-time)
+- **Analysis Progress**: 96.8% complete
+
+### 🎮 **Demo Controls**
+- **Start/Pause/Stop** - Control demo flow
+- **Voice Narration** - ElevenLabs integration
+- **Fullscreen Mode** - Immersive experience
+- **Export Reports** - Generate analysis data
+- **Section Navigation** - 7-part investor presentation
+
+### 🔧 **Technical Features**
+- **Flask Backend** - RESTful API endpoints
+- **Cesium 3D Engine** - Interactive visualization
+- **STGNN Technology** - Advanced AI analysis
+- **Real-time Updates** - Live data streaming
+- **Graceful Shutdown** - Professional demo control
+
 ## 🚀 Getting Started
 
 ### Prerequisites
+- Python 3.7+ for digital twin demo
 - Modern web browser with WebGL support
-- Internet connection for Mapbox integration
-- No additional software installation required
+- Internet connection for Cesium integration
+- Virtual environment for Python dependencies
 
 ### Running the Platform
+
+#### Option 1: Digital Twin Demo (Recommended)
+1. **Navigate to digital twin directory**:
+   ```bash
+   cd digitatwin
+   ```
+
+2. **Set up virtual environment**:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **Start the digital twin demo**:
+   ```bash
+   python3 start.py
+   ```
+
+4. **Access the demo**:
+   ```
+   http://localhost:8001
+   ```
+
+5. **Demo controls**:
+   - Use `python3 stop_demo.py` to stop gracefully
+   - Use `python3 restart_demo.py` to restart
+   - Press `Ctrl+C` for emergency stop
+
+#### Option 2: Basic 3D Platform
 1. **Start the server**:
    ```bash
    python3 -m http.server 8000
