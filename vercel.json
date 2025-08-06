@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "digitatwin/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "digitatwin/app.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "digitatwin/static/$1"
+    },
+    {
+      "src": "/templates/(.*)",
+      "dest": "digitatwin/templates/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "digitatwin/app.py"
+    }
+  ],
+  "env": {
+    "FLASK_ENV": "production",
+    "PORT": "8001"
+  }
+} 
