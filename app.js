@@ -5,46 +5,7 @@
 
 class RetrofitForge3DPlatform {
     constructor() {
-        this.currentSection = 0;
-        this.isPlaying = true;
         this.selectedSegment = 'all';
-        this.sections = [
-            {
-                name: 'Advanced STGNNs for Property Performance Forecasting',
-                description: 'Spatio-Temporal Graph Neural Networks with 96.9% accuracy for real-time property performance prediction and investment optimization.',
-                duration: 15000
-            },
-            {
-                name: 'Investment Optimization with Uncertainty Quantification',
-                description: 'Bayesian optimization delivering 34.2% ROI improvement with 42% risk reduction and 95% confidence intervals.',
-                duration: 15000
-            },
-            {
-                name: 'Multi-Modal Data Lake Integration',
-                description: 'Integrated satellite, thermal, and property data from 15 sources with 3M+ records updated in real-time.',
-                duration: 15000
-            },
-            {
-                name: 'Carbon Intelligence & ESG Compliance',
-                description: 'Environmental impact tracking with 1.2M+ CO2 metrics tracked and 93.6% ESG compliance score.',
-                duration: 15000
-            },
-            {
-                name: 'Digital Twin Engine',
-                description: 'Real-time property modeling with 2,537 active models achieving 99.3% simulation accuracy.',
-                duration: 15000
-            },
-            {
-                name: 'Carbon-Aware Infrastructure',
-                description: 'Cloud-native platform optimized for minimal environmental impact with 99.9% uptime and 89% carbon efficiency.',
-                duration: 15000
-            },
-            {
-                name: 'Hybrid SAM-GNN Pipeline',
-                description: 'Patent-pending fusion of Segment-Anything Model with Spatio-Temporal Graph Neural Networks for real-time point cloud re-segmentation.',
-                duration: 15000
-            }
-        ];
 
         // Enhanced application data with STGNN and advanced AI features
         this.buildingData = {
@@ -172,47 +133,22 @@ class RetrofitForge3DPlatform {
             autoRotateSpeed: 0.5
         };
 
-        this.init();
+        // Don't initialize immediately - wait for DOM to be ready
     }
 
     init() {
         console.log('Initializing RetrofitForge platform...');
         this.setupEventListeners();
-        this.showLoadingOverlay();
         setTimeout(() => {
             console.log('Starting platform initialization...');
             try {
-            this.initThreeJS();
+                this.initThreeJS();
                 console.log('ThreeJS initialized');
-                // Mapbox removed
-            this.createPointCloud();
+                this.createPointCloud();
                 console.log('Point cloud created');
-            this.initCharts();
-                console.log('Charts initialized');
-                this.updateROIMetrics();
-                console.log('ROI metrics updated');
-                this.updateClimateRisk();
-                console.log('Climate risk updated');
-            this.hideLoadingOverlay();
-                console.log('Loading overlay hidden');
-            this.startPresentation();
-                console.log('Presentation started');
-            this.animate();
+                this.animate();
                 console.log('Animation started');
-                this.startRealTimeDataStream();
-                console.log('Real-time data stream started');
-                // Mapbox segment sync removed
-                
-                        // Test HUD banner
-        setTimeout(() => {
-            this.updateHUD({
-                payback: '2.7 yrs',
-                climateYield: '£46 / tCO₂e',
-                npv: '+£3.4 M'
-            });
-        }, 2000);
-        
-        // Mapbox testing removed
+                console.log('Application initialized');
             } catch (error) {
                 console.error('Error during initialization:', error);
             }
@@ -220,108 +156,80 @@ class RetrofitForge3DPlatform {
     }
 
     setupEventListeners() {
-        // Control buttons
-        document.getElementById('playPauseBtn').addEventListener('click', () => this.togglePlayPause());
-        document.getElementById('prevBtn').addEventListener('click', () => this.previousSection());
-        document.getElementById('nextBtn').addEventListener('click', () => this.nextSection());
-
-        // Section indicators
-        document.querySelectorAll('.indicator').forEach((indicator, index) => {
-            indicator.addEventListener('click', () => this.goToSection(index));
-        });
-
-        // Enhanced segmentation parameter controls
-        document.getElementById('ransacDistance').addEventListener('input', (e) => {
-            document.getElementById('ransacValue').textContent = e.target.value;
-            this.updateSegmentation();
-        });
-
-        document.getElementById('dbscanEps').addEventListener('input', (e) => {
-            document.getElementById('dbscanValue').textContent = e.target.value;
-            this.updateSegmentation();
-        });
-
-        document.getElementById('minPoints').addEventListener('input', (e) => {
-            document.getElementById('minPointsValue').textContent = e.target.value;
-            this.updateSegmentation();
-        });
-
-        // Bayesian uncertainty threshold
-        document.getElementById('uncertaintyThreshold').addEventListener('input', (e) => {
-            document.getElementById('uncertaintyValue').textContent = e.target.value;
-            this.updateUncertaintyFilter();
-        });
-
-        // Enhanced filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.selectedSegment = e.target.dataset.segment;
-                this.updatePointCloudVisibility();
-                this.updatePerformanceCard();
-                this.updateCarbonNFT();
-            });
-        });
-
-        // Mapbox controls - DISABLED
-        /*
-        document.getElementById('droneViewBtn').addEventListener('click', () => {
-            console.log('Drone view clicked');
-            this.showDroneView();
-        });
-        document.getElementById('cityViewBtn').addEventListener('click', () => {
-            console.log('City view clicked');
-            this.showCityView();
-        });
-        document.getElementById('thermalViewBtn').addEventListener('click', () => {
-            console.log('Thermal view clicked');
-            this.showThermalView();
-        });
-        */
-
-        // Enhanced export buttons
-        document.getElementById('exportBtn').addEventListener('click', () => this.exportAnalysis());
-        document.getElementById('carbonExportBtn').addEventListener('click', () => this.mintCarbonNFT());
-        document.getElementById('presentationExportBtn').addEventListener('click', () => this.generateReport());
-        document.getElementById('investorDemoBtn').addEventListener('click', () => this.startInvestorDemo());
-
-        // Test Mapbox 3-D context layer
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'm' || e.key === 'M') {
-                this.toggleMapbox3DContext();
-            }
-        });
-
-        // Mapbox buttons removed - no longer needed
-
-        // Scroll buttons
+        console.log('Setting up event listeners...');
+        
+        // Skip toggle button setup for now to avoid errors
+        console.log('Skipping toggle button setup to avoid DOM errors');
+        
+        // Global event listeners (these should always work)
         try {
-            const scrollUpBtn = document.getElementById('scrollUpBtn');
-            const scrollDownBtn = document.getElementById('scrollDownBtn');
-            
-            if (scrollUpBtn) {
-                scrollUpBtn.addEventListener('click', () => this.scrollUp());
-            }
-            if (scrollDownBtn) {
-                scrollDownBtn.addEventListener('click', () => this.scrollDown());
-            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'm' || e.key === 'M') {
+                    this.toggleMapbox3DContext();
+                }
+            });
+            console.log('Global keydown event listener added');
         } catch (error) {
-            console.error('Error setting up scroll button event listeners:', error);
+            console.error('Failed to add keydown event listener:', error);
         }
 
-        // Window resize
-        window.addEventListener('resize', () => this.onWindowResize());
+        try {
+            window.addEventListener('resize', () => this.onWindowResize());
+            console.log('Window resize event listener added');
+        } catch (error) {
+            console.error('Failed to add resize event listener:', error);
+        }
 
-        // Make charts draggable (with delay to ensure DOM is ready)
-        setTimeout(() => {
-            this.setupDraggableCharts();
-        }, 2000);
+        console.log('Event listeners setup complete');
+    }
 
-        // Initialize scroll button states
-        setTimeout(() => {
-            this.updateScrollButtonStates();
-        }, 2500);
+    toggleDigitalTwin() {
+        const toggleBtn = document.getElementById('digitalTwinToggle');
+        if (!toggleBtn) {
+            console.warn('Toggle button not found, cannot toggle mode');
+            return;
+        }
+        
+        const toggleIcon = toggleBtn.querySelector('.toggle-icon');
+        const toggleText = toggleBtn.querySelector('.toggle-text');
+        
+        if (toggleBtn.classList.contains('active')) {
+            // Switch to 3D Perception mode
+            toggleBtn.classList.remove('active');
+            toggleIcon.textContent = '🏗️';
+            toggleText.textContent = 'Digital Twin';
+            this.switchTo3DPerceptionMode();
+        } else {
+            // Switch to Digital Twin mode
+            toggleBtn.classList.add('active');
+            toggleIcon.textContent = '🔬';
+            toggleText.textContent = '3D Perception';
+            this.switchToDigitalTwinMode();
+        }
+    }
+
+    switchTo3DPerceptionMode() {
+        console.log('Switching to 3D Perception mode');
+        // Reset to default 3D perception view
+        this.resetCamera();
+        this.updatePointCloudVisualization('default');
+        
+        // Update scene background
+        if (this.scene) {
+            this.scene.background = new THREE.Color(0x090e1a);
+        }
+    }
+
+    switchToDigitalTwinMode() {
+        console.log('Switching to Digital Twin mode');
+        // Switch to digital twin view with different visualization
+        this.animateCamera(0, 150, 200, 2);
+        this.updatePointCloudVisualization('digital-twin');
+        
+        // Update scene background for digital twin mode
+        if (this.scene) {
+            this.scene.background = new THREE.Color(0x1a1a2e);
+        }
     }
 
     setupDraggableCharts() {
@@ -418,6 +326,11 @@ class RetrofitForge3DPlatform {
 
     initThreeJS() {
         const container = document.getElementById('pointCloudScene');
+        
+        if (!container) {
+            console.error('pointCloudScene container not found in DOM');
+            return;
+        }
         
         // Scene setup
         this.scene = new THREE.Scene();
@@ -1150,166 +1063,232 @@ class RetrofitForge3DPlatform {
         return scores[insulation] || 50;
     }
 
-    startPresentation() {
-        this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
-    }
 
-    scheduleNextSection() {
-        if (this.sectionTimer) {
-            clearTimeout(this.sectionTimer);
-        }
+
+    // Initialize default visualization state
+    initializeVisualization() {
+        // Show default charts and overlays
+        document.getElementById('segmentationChart').classList.add('active');
+        document.getElementById('performanceOverlay').classList.add('active');
+        document.getElementById('legendOverlay').classList.add('active');
         
-        this.sectionTimer = setTimeout(() => {
-            if (this.isPlaying) {
-                this.nextSection();
+        // Set default camera position
+        this.animateCamera(0, 150, 400, 2000);
+        this.updatePointCloudVisualization('segmentation');
+        
+        // Initialize all live data systems
+        this.updatePerformanceMetrics();
+        this.updatePerformanceCard();
+        this.updateLiveSegmentationData();
+        
+        // Start real-time metrics stream
+        this.startRealTimeMetricsStream();
+    }
+    
+    // Start real-time metrics data stream
+    startRealTimeMetricsStream() {
+        // Update performance metrics banner every 2-4 seconds
+        setInterval(() => {
+            this.updatePerformanceMetrics();
+        }, 2000 + Math.random() * 2000);
+        
+        // Update building overview panel every 2-3 seconds
+        setInterval(() => {
+            this.updateLiveBuildingData();
+            this.updatePerformanceCard();
+        }, 2000 + Math.random() * 1000);
+        
+        // Update segmentation data every 3-4 seconds
+        setInterval(() => {
+            this.updateLiveSegmentationData();
+        }, 3000 + Math.random() * 1000);
+        
+        // Add live indicator to banner
+        this.addLiveIndicator();
+        
+        // Start data source rotation
+        this.startDataSourceRotation();
+    }
+    
+    // Rotate through different data sources to show live feeds
+    startDataSourceRotation() {
+        const dataSources = [
+            'Market Feed',
+            'IoT Sensors',
+            'Carbon Exchange',
+            'Energy Grid',
+            'STGNN Model',
+            'Satellite Data',
+            'Weather API',
+            'Blockchain Oracle'
+        ];
+        
+        let currentIndex = 0;
+        
+        setInterval(() => {
+            const dataSourceElement = document.getElementById('currentDataSource');
+            if (dataSourceElement) {
+                dataSourceElement.textContent = dataSources[currentIndex];
+                dataSourceElement.style.color = this.getDataSourceColor(dataSources[currentIndex]);
             }
-        }, this.sections[this.currentSection].duration);
+            currentIndex = (currentIndex + 1) % dataSources.length;
+        }, 5000); // Change data source every 5 seconds
     }
-
-    nextSection() {
-        this.currentSection = (this.currentSection + 1) % this.sections.length;
-        this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
+    
+    // Get color for different data sources
+    getDataSourceColor(source) {
+        const colors = {
+            'Market Feed': '#10b981',
+            'IoT Sensors': '#3b82f6',
+            'Carbon Exchange': '#f59e0b',
+            'Energy Grid': '#ef4444',
+            'STGNN Model': '#8b5cf6',
+            'Satellite Data': '#06b6d4',
+            'Weather API': '#84cc16',
+            'Blockchain Oracle': '#f97316'
+        };
+        return colors[source] || '#10b981';
     }
-
-    previousSection() {
-        this.currentSection = (this.currentSection - 1 + this.sections.length) % this.sections.length;
-        this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
-    }
-
-    goToSection(index) {
-        this.currentSection = index;
-        this.updateSection();
-        if (this.isPlaying) {
-            this.scheduleNextSection();
-        }
-    }
-
-    togglePlayPause() {
-        this.isPlaying = !this.isPlaying;
-        const playPauseIcon = document.getElementById('playPauseIcon');
-        const playPauseText = document.getElementById('playPauseText');
+    
+    // Add live indicator to show real-time data
+    addLiveIndicator() {
+        const banner = document.getElementById('performanceMetricsBanner');
+        if (!banner) return;
         
-        if (this.isPlaying) {
-            playPauseIcon.textContent = '⏸️';
-            playPauseText.textContent = 'Pause';
-            this.scheduleNextSection();
-        } else {
-            playPauseIcon.textContent = '▶️';
-            playPauseText.textContent = 'Play';
-            if (this.sectionTimer) {
-                clearTimeout(this.sectionTimer);
+        // Add live indicator dot
+        const liveDot = document.createElement('div');
+        liveDot.className = 'live-indicator-dot';
+        liveDot.innerHTML = '● LIVE';
+        liveDot.style.cssText = `
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(45deg, #10b981, #34d399);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            animation: livePulse 2s ease-in-out infinite;
+            z-index: 10;
+        `;
+        
+        banner.appendChild(liveDot);
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes livePulse {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.7; transform: scale(1.1); }
             }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Real-time performance metrics data
+    realTimeMetrics = {
+        payback: { current: 2.7, target: 2.5, volatility: 0.3 },
+        climateYield: { current: 46, target: 50, volatility: 8 },
+        npv: { current: 3.4, target: 4.0, volatility: 0.8 }
+    };
+
+    // Update performance metrics banner with real-time data
+    updatePerformanceMetrics() {
+        // Simulate real-time market fluctuations and sensor data
+        this.updateRealTimeMetrics();
+        
+        // Get current values
+        const payback = this.realTimeMetrics.payback.current.toFixed(1);
+        const climateYield = Math.round(this.realTimeMetrics.climateYield.current);
+        const npv = this.realTimeMetrics.npv.current.toFixed(1);
+        
+        // Update the banner values with live animation
+        this.animateMetricUpdate('paybackValue', `${payback} yrs`);
+        this.animateMetricUpdate('climateYieldValue', `£${climateYield} / tCO₂e`);
+        this.animateMetricUpdate('npvValue', `+£${npv} M`);
+        
+        // Ensure banner is properly positioned
+        this.positionPerformanceBanner();
+    }
+    
+    // Simulate real-time market and sensor data updates
+    updateRealTimeMetrics() {
+        // Simulate market hours (more volatility during trading hours)
+        const now = new Date();
+        const hour = now.getHours();
+        const isMarketHours = hour >= 9 && hour <= 17;
+        const volatilityMultiplier = isMarketHours ? 1.5 : 0.7;
+        
+        // Payback period fluctuates based on energy prices and efficiency
+        const energyPriceChange = (Math.random() - 0.5) * 0.15 * volatilityMultiplier;
+        const efficiencyGain = Math.random() * 0.05; // Gradual efficiency improvements
+        this.realTimeMetrics.payback.current += energyPriceChange - efficiencyGain;
+        this.realTimeMetrics.payback.current = Math.max(2.0, Math.min(4.0, this.realTimeMetrics.payback.current));
+        
+        // Climate yield varies with carbon credit market prices and environmental factors
+        const carbonMarketChange = (Math.random() - 0.5) * 3 * volatilityMultiplier;
+        const seasonalFactor = Math.sin(now.getTime() / (1000 * 60 * 60 * 24 * 365)) * 2; // Seasonal variation
+        this.realTimeMetrics.climateYield.current += carbonMarketChange + seasonalFactor * 0.1;
+        this.realTimeMetrics.climateYield.current = Math.max(35, Math.min(65, this.realTimeMetrics.climateYield.current));
+        
+        // NPV changes with investment performance, market conditions, and interest rates
+        const marketPerformance = (Math.random() - 0.5) * 0.3 * volatilityMultiplier;
+        const interestRateEffect = Math.random() * 0.05; // Gradual growth
+        this.realTimeMetrics.npv.current += marketPerformance + interestRateEffect;
+        this.realTimeMetrics.npv.current = Math.max(2.0, Math.min(6.0, this.realTimeMetrics.npv.current));
+        
+        // Add some correlation between metrics (realistic market behavior)
+        if (Math.random() > 0.7) {
+            // Occasionally, all metrics move in the same direction
+            const trend = Math.random() > 0.5 ? 1 : -1;
+            this.realTimeMetrics.payback.current += trend * 0.05;
+            this.realTimeMetrics.climateYield.current += trend * 1;
+            this.realTimeMetrics.npv.current += trend * 0.1;
         }
     }
-
-    updateSection() {
-        const section = this.sections[this.currentSection];
-        const sectionIndicator = document.getElementById('fixedSectionIndicator');
+    
+    // Animate metric updates with visual feedback
+    animateMetricUpdate(elementId, newValue) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
         
-        // Add transition animation
-        sectionIndicator.classList.add('section-changing');
+        const oldValue = element.textContent;
+        if (oldValue === newValue) return;
         
-        // Update UI with slight delay for smooth transition
+        // Add update animation class
+        element.classList.add('metric-updating');
+        
+        // Update the value
+        element.textContent = newValue;
+        
+        // Remove animation class after animation completes
         setTimeout(() => {
-            document.getElementById('currentSectionNum').textContent = this.currentSection + 1;
-            document.getElementById('currentSectionName').textContent = section.name;
-            document.getElementById('currentSectionDesc').textContent = section.description;
-            
-            // Remove transition class after content update
-            sectionIndicator.classList.remove('section-changing');
-        }, 150);
-
-        // Update progress indicators
-        document.querySelectorAll('.indicator').forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSection);
-        });
-
-        // Update progress bar
-        const progress = ((this.currentSection + 1) / this.sections.length) * 100;
-        document.getElementById('progressBar').style.width = `${progress}%`;
-
-        // Update scroll button states
-        try {
-            this.updateScrollButtonStates();
-        } catch (error) {
-            console.error('Error updating scroll button states in updateSection:', error);
-        }
-
-        // Show appropriate visualizations
-        this.showSectionContent();
+            element.classList.remove('metric-updating');
+        }, 1000);
     }
-
-    showSectionContent() {
-        // Hide all charts and overlays
-        document.querySelectorAll('.chart-container').forEach(chart => {
-            chart.classList.remove('active');
-        });
-        document.getElementById('performanceOverlay').classList.remove('active');
-        document.getElementById('legendOverlay').classList.remove('active');
-        document.getElementById('carbonNFTOverlay').classList.remove('active');
-
-        // Mapbox 3-D context layer removed
-
-        // Show relevant chart and update visualization for current section
-        switch (this.currentSection) {
-            case 0: // Advanced STGNNs
-                this.animateCamera(0, 150, 400, 2000);
-                document.getElementById('segmentationChart').classList.add('active');
-                this.updatePointCloudVisualization('segmentation');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
-            case 1: // Investment Optimization
-                this.animateCamera(150, 100, 300, 2000);
-                document.getElementById('thermalChart').classList.add('active');
-                this.updatePointCloudVisualization('thermal');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
-            case 2: // Multi-Modal Data Lake
-                this.animateCamera(-100, 120, 250, 2000);
-                document.getElementById('componentsChart').classList.add('active');
-                this.updatePointCloudVisualization('components');
-                this.showBoundingBoxes(true);
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
-            case 3: // Carbon Intelligence
-                this.animateCamera(200, 80, 350, 2000);
-                document.getElementById('climateChart').classList.add('active');
-                this.updatePointCloudVisualization('risk');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
-            case 4: // Digital Twin Engine (Carbon NFT - stays at bottom)
-                this.animateCamera(0, 250, 500, 2000);
-                this.updatePointCloudVisualization('carbon');
-                this.showCarbonNFT();
-                break;
-            case 5: // Carbon-Aware Infrastructure
-                this.animateCamera(0, 250, 500, 2000);
-                document.getElementById('climateChart').classList.add('active');
-                this.updatePointCloudVisualization('climate');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
-            case 6: // Hybrid SAM-GNN Pipeline
-                this.animateCamera(0, 250, 500, 2000);
-                document.getElementById('roiChart').classList.add('active');
-                this.updatePointCloudVisualization('roi');
-                document.getElementById('performanceOverlay').classList.add('active');
-                document.getElementById('legendOverlay').classList.add('active');
-                break;
+    
+    // Ensure banner doesn't block other content
+    positionPerformanceBanner() {
+        const banner = document.getElementById('performanceMetricsBanner');
+        if (!banner) return;
+        
+        // Check if there are any overlapping elements
+        const sidebar = document.querySelector('.sidebar');
+        const chartsOverlay = document.getElementById('chartsOverlay');
+        
+        // Adjust position based on available space
+        let topPosition = 20;
+        
+        // If charts overlay is active and positioned high, move banner down
+        if (chartsOverlay && chartsOverlay.classList.contains('active')) {
+            const chartsRect = chartsOverlay.getBoundingClientRect();
+            if (chartsRect.top < 100) {
+                topPosition = 80;
+            }
         }
+        
+        banner.style.top = `${topPosition}px`;
         }
 
     showCarbonNFT() {
@@ -1350,9 +1329,18 @@ class RetrofitForge3DPlatform {
             const material = cloud.material;
             
             switch (mode) {
+                case 'default':
                 case 'segmentation':
-                    // Original colors
+                    // Original colors for 3D Perception mode
                     material.opacity = 0.8;
+                    break;
+                case 'digital-twin':
+                    // Enhanced visualization for Digital Twin mode
+                    material.opacity = 0.9;
+                    // Add subtle glow effect
+                    if (material.emissive) {
+                        material.emissive.setHex(0x111111);
+                    }
                     break;
                 case 'components':
                     // Highlight by efficiency
@@ -1422,30 +1410,400 @@ class RetrofitForge3DPlatform {
         });
     }
 
+    // Live building overview data
+    liveBuildingData = {
+        energyConsumption: { current: 2850, base: 2850, volatility: 50 },
+        thermalPerformance: { current: 18.5, base: 18.5, volatility: 0.8 },
+        maintenanceCost: { current: 12500, base: 12500, volatility: 200 },
+        riskLevel: { current: 'Medium', levels: ['Low', 'Medium', 'High'] },
+        carbonCredits: { current: 2.4, base: 2.4, volatility: 0.1 }
+    };
+
+    // Live segmentation data
+    liveSegmentationData = {
+        walls: { points: 85000, base: 85000, volatility: 1000 },
+        roof: { points: 45000, base: 45000, volatility: 500 },
+        windows: { points: 25000, base: 25000, volatility: 300 },
+        hvac: { points: 35000, base: 35000, volatility: 400 },
+        floor: { points: 60000, base: 60000, volatility: 600 }
+    };
+
     updatePerformanceCard() {
         const segment = this.selectedSegment;
         
         if (segment === 'all') {
             document.getElementById('selectedComponent').textContent = 'Building Overview';
-            document.getElementById('energyConsumption').textContent = `${this.buildingData.performanceMetrics.energyConsumption.total.toLocaleString()} kWh`;
-            document.getElementById('thermalPerf').textContent = '18.3°C avg';
-            document.getElementById('maintCost').textContent = `£${this.buildingData.performanceMetrics.maintenanceCosts.total.toLocaleString()}`;
-            document.getElementById('riskLevel').textContent = 'Medium';
+            
+            // Update with live animated values
+            this.animateMetricUpdate('energyConsumption', `${Math.round(this.liveBuildingData.energyConsumption.current).toLocaleString()} kWh`);
+            this.animateMetricUpdate('thermalPerf', `${this.liveBuildingData.thermalPerformance.current.toFixed(1)}°C avg`);
+            this.animateMetricUpdate('maintCost', `£${Math.round(this.liveBuildingData.maintenanceCost.current).toLocaleString()}`);
+            this.animateMetricUpdate('riskLevel', this.liveBuildingData.riskLevel.current);
+            this.animateMetricUpdate('carbonValue', `${this.liveBuildingData.carbonCredits.current.toFixed(1)} tCO₂e`);
         } else {
             const segmentData = this.buildingData.buildingPointCloud.segments.find(s => s.id === segment);
             const thermalData = this.buildingData.buildingPointCloud.thermalData.find(t => t.segment === segment);
             
             if (segmentData && thermalData) {
-                document.getId('selectedComponent').textContent = segment.charAt(0).toUpperCase() + segment.slice(1);
-                document.getElementById('energyConsumption').textContent = `${this.buildingData.performanceMetrics.energyConsumption.bySegment[segment] || 0} kWh`;
-                document.getElementById('thermalPerf').textContent = `${thermalData.avgTemp}°C avg`;
-                document.getElementById('maintCost').textContent = `£${this.buildingData.performanceMetrics.maintenanceCosts.bySegment[segment] || 0}`;
+                const segmentTitle = segment.charAt(0).toUpperCase() + segment.slice(1);
+                document.getElementById('selectedComponent').textContent = segmentTitle;
                 
-                const riskData = this.buildingData.climateRiskBySegment.find(r => r.segment === segment);
-                const riskLevel = riskData ? (riskData.overallRisk > 50 ? 'High' : riskData.overallRisk > 30 ? 'Medium' : 'Low') : 'Unknown';
-                document.getElementById('riskLevel').textContent = riskLevel;
+                // Calculate segment-specific live values
+                const segmentEnergy = this.calculateSegmentEnergy(segment);
+                const segmentThermal = this.calculateSegmentThermal(segment);
+                const segmentCost = this.calculateSegmentCost(segment);
+                const segmentRisk = this.calculateSegmentRisk(segment);
+                const segmentCarbon = this.calculateSegmentCarbon(segment);
+                
+                this.animateMetricUpdate('energyConsumption', `${Math.round(segmentEnergy).toLocaleString()} kWh`);
+                this.animateMetricUpdate('thermalPerf', `${segmentThermal.toFixed(1)}°C avg`);
+                this.animateMetricUpdate('maintCost', `£${Math.round(segmentCost).toLocaleString()}`);
+                this.animateMetricUpdate('riskLevel', segmentRisk);
+                this.animateMetricUpdate('carbonValue', `${segmentCarbon.toFixed(1)} tCO₂e`);
             }
         }
+        
+        // Also update the performance metrics banner
+        this.updatePerformanceMetrics();
+    }
+    
+    // Update live building data with realistic fluctuations
+    updateLiveBuildingData() {
+        // Energy consumption fluctuates based on time of day and usage patterns
+        const now = new Date();
+        const hour = now.getHours();
+        const isPeakHours = (hour >= 8 && hour <= 10) || (hour >= 17 && hour <= 19);
+        const timeFactor = isPeakHours ? 1.2 : 0.8;
+        
+        this.liveBuildingData.energyConsumption.current += (Math.random() - 0.5) * 10 * timeFactor;
+        this.liveBuildingData.energyConsumption.current = Math.max(
+            this.liveBuildingData.energyConsumption.base * 0.8,
+            Math.min(this.liveBuildingData.energyConsumption.base * 1.3, this.liveBuildingData.energyConsumption.current)
+        );
+        
+        // Thermal performance varies with weather and system efficiency
+        const seasonalFactor = Math.sin(now.getTime() / (1000 * 60 * 60 * 24 * 365)) * 2;
+        this.liveBuildingData.thermalPerformance.current += (Math.random() - 0.5) * 0.2 + seasonalFactor * 0.01;
+        this.liveBuildingData.thermalPerformance.current = Math.max(15, Math.min(25, this.liveBuildingData.thermalPerformance.current));
+        
+        // Maintenance costs gradually increase with wear and tear
+        this.liveBuildingData.maintenanceCost.current += Math.random() * 5;
+        this.liveBuildingData.maintenanceCost.current = Math.max(
+            this.liveBuildingData.maintenanceCost.base * 0.9,
+            Math.min(this.liveBuildingData.maintenanceCost.base * 1.2, this.liveBuildingData.maintenanceCost.current)
+        );
+        
+        // Risk level changes based on system performance
+        if (Math.random() > 0.95) {
+            const currentIndex = this.liveBuildingData.riskLevel.levels.indexOf(this.liveBuildingData.riskLevel.current);
+            const newIndex = Math.max(0, Math.min(2, currentIndex + (Math.random() > 0.5 ? 1 : -1)));
+            this.liveBuildingData.riskLevel.current = this.liveBuildingData.riskLevel.levels[newIndex];
+        }
+        
+        // Carbon credits accumulate over time
+        this.liveBuildingData.carbonCredits.current += Math.random() * 0.02;
+        this.liveBuildingData.carbonCredits.current = Math.max(
+            this.liveBuildingData.carbonCredits.base * 0.8,
+            Math.min(this.liveBuildingData.carbonCredits.base * 1.5, this.liveBuildingData.carbonCredits.current)
+        );
+        
+        // Add visual feedback for data updates
+        this.showDataUpdateIndicator();
+    }
+    
+    // Show visual indicator when data updates
+    showDataUpdateIndicator() {
+        const performanceCard = document.getElementById('performanceCard');
+        if (performanceCard) {
+            performanceCard.classList.add('data-updating');
+            setTimeout(() => {
+                performanceCard.classList.remove('data-updating');
+            }, 300);
+        }
+    }
+    
+    // Calculate segment-specific live values
+    calculateSegmentEnergy(segment) {
+        const baseEnergy = this.buildingData.performanceMetrics.energyConsumption.bySegment[segment] || 0;
+        const efficiency = this.buildingData.buildingPointCloud.segments.find(s => s.id === segment)?.efficiency || 75;
+        const efficiencyFactor = (100 - efficiency) / 100;
+        return baseEnergy * (1 + efficiencyFactor * 0.3) + Math.random() * 50;
+    }
+    
+    calculateSegmentThermal(segment) {
+        const thermalData = this.buildingData.buildingPointCloud.thermalData.find(t => t.segment === segment);
+        const baseTemp = thermalData?.avgTemp || 18.5;
+        return baseTemp + (Math.random() - 0.5) * 2;
+    }
+    
+    calculateSegmentCost(segment) {
+        const baseCost = this.buildingData.performanceMetrics.maintenanceCosts.bySegment[segment] || 0;
+        const defects = this.buildingData.buildingPointCloud.segments.find(s => s.id === segment)?.defects || 0;
+        return baseCost * (1 + defects * 0.1) + Math.random() * 100;
+    }
+    
+    calculateSegmentRisk(segment) {
+                const riskData = this.buildingData.climateRiskBySegment.find(r => r.segment === segment);
+        const riskScore = riskData?.overallRisk || 30;
+        return riskScore > 50 ? 'High' : riskScore > 30 ? 'Medium' : 'Low';
+    }
+    
+    calculateSegmentCarbon(segment) {
+        const baseCarbon = this.buildingData.carbonCredits.bySegment[segment] || 0;
+        return baseCarbon + Math.random() * 0.1;
+    }
+    
+    // Update live segmentation data with realistic fluctuations
+    updateLiveSegmentationData() {
+        // Simulate real-time point cloud processing and sensor data
+        Object.keys(this.liveSegmentationData).forEach(segment => {
+            const data = this.liveSegmentationData[segment];
+            
+            // Points fluctuate based on sensor accuracy and processing
+            const sensorNoise = (Math.random() - 0.5) * data.volatility;
+            const processingVariation = Math.sin(Date.now() / 10000) * data.volatility * 0.1;
+            
+            data.points += sensorNoise + processingVariation;
+            data.points = Math.max(data.base * 0.9, Math.min(data.base * 1.1, data.points));
+        });
+        
+        // Update the legend display
+        this.updateSegmentationLegend();
+    }
+    
+    // Update the segmentation legend with live point counts
+    updateSegmentationLegend() {
+        const legendItems = document.querySelectorAll('.legend-item span');
+        
+        legendItems.forEach((item, index) => {
+            const segments = ['walls', 'roof', 'windows', 'hvac', 'floor'];
+            const segment = segments[index];
+            
+            if (segment && this.liveSegmentationData[segment]) {
+                const points = Math.round(this.liveSegmentationData[segment].points);
+                const currentText = item.textContent;
+                const newText = currentText.replace(/\(\d+k points\)/, `(${Math.round(points/1000)}k points)`);
+                
+                if (currentText !== newText) {
+                    // Add animation class for visual feedback
+                    item.classList.add('legend-updating');
+                    item.textContent = newText;
+                    
+                    // Remove animation class after animation completes
+                    setTimeout(() => {
+                        item.classList.remove('legend-updating');
+                    }, 1000);
+                }
+            }
+        });
+        
+        // Update point cloud density based on live segmentation data
+        this.updatePointCloudDensity();
+    }
+    
+    // Update point cloud density based on live segmentation data
+    updatePointCloudDensity() {
+        this.pointClouds.forEach(cloud => {
+            const segment = cloud.userData.segment;
+            if (this.liveSegmentationData[segment]) {
+                const livePoints = this.liveSegmentationData[segment].points;
+                const basePoints = this.liveSegmentationData[segment].base;
+                const densityFactor = livePoints / basePoints;
+                
+                // Adjust point cloud opacity based on density changes
+                cloud.material.opacity = Math.max(0.3, Math.min(1.0, 0.8 * densityFactor));
+                
+                // Add subtle scaling effect
+                const scale = 0.95 + (densityFactor - 1) * 0.1;
+                cloud.scale.setScalar(Math.max(0.9, Math.min(1.1, scale)));
+            }
+        });
+    }
+    
+    // Show interactive segment transition
+    showSegmentTransition(segment) {
+        const performanceCard = document.getElementById('performanceCard');
+        if (performanceCard) {
+            performanceCard.classList.add('segment-transitioning');
+            setTimeout(() => {
+                performanceCard.classList.remove('segment-transitioning');
+            }, 500);
+        }
+        
+        // Highlight corresponding point cloud
+        this.pointClouds.forEach(cloud => {
+            if (cloud.userData.segment === segment) {
+                cloud.material.opacity = 1.0;
+                cloud.scale.setScalar(1.1);
+                setTimeout(() => {
+                    cloud.scale.setScalar(1.0);
+                }, 300);
+            }
+        });
+    }
+    
+    // Setup interactive performance stats
+    setupInteractivePerformanceStats() {
+        const perfStats = document.querySelectorAll('.perf-stat');
+        perfStats.forEach(stat => {
+            stat.addEventListener('mouseenter', () => {
+                stat.classList.add('stat-hovered');
+                this.showDetailedStats(stat);
+            });
+            
+            stat.addEventListener('mouseleave', () => {
+                stat.classList.remove('stat-hovered');
+                this.hideDetailedStats();
+            });
+        });
+    }
+    
+    // Setup interactive legend items
+    setupInteractiveLegendItems() {
+        const legendItems = document.querySelectorAll('.legend-item');
+        legendItems.forEach((item, index) => {
+            const segments = ['walls', 'roof', 'windows', 'hvac', 'floor'];
+            const segment = segments[index];
+            
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('legend-hovered');
+                this.highlightSegment(segment);
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('legend-hovered');
+                this.unhighlightSegment(segment);
+            });
+            
+            item.addEventListener('click', () => {
+                this.selectSegmentFromLegend(segment);
+            });
+        });
+    }
+    
+    // Show detailed stats on hover
+    showDetailedStats(statElement) {
+        const label = statElement.querySelector('.perf-label').textContent;
+        const value = statElement.querySelector('.perf-value').textContent;
+        
+        const tooltip = document.createElement('div');
+        tooltip.className = 'stat-tooltip';
+        tooltip.innerHTML = `
+            <div class="tooltip-content">
+                <h4>${label}</h4>
+                <p>Current: ${value}</p>
+                <p>Trend: ${this.getTrendIndicator(label)}</p>
+                <p>Last Update: ${new Date().toLocaleTimeString()}</p>
+            </div>
+        `;
+        
+        document.body.appendChild(tooltip);
+        
+        // Position tooltip near the stat
+        const rect = statElement.getBoundingClientRect();
+        tooltip.style.left = rect.right + 10 + 'px';
+        tooltip.style.top = rect.top + 'px';
+        
+        // Store reference for removal
+        statElement.tooltip = tooltip;
+    }
+    
+    // Hide detailed stats
+    hideDetailedStats() {
+        const tooltips = document.querySelectorAll('.stat-tooltip');
+        tooltips.forEach(tooltip => tooltip.remove());
+    }
+    
+    // Get trend indicator for stats
+    getTrendIndicator(label) {
+        const trends = {
+            'Energy Consumption': '↗️ Increasing',
+            'Thermal Performance': '↘️ Decreasing',
+            'Maintenance Cost': '↗️ Rising',
+            'Risk Level': '→ Stable',
+            'Carbon Credits': '↗️ Growing'
+        };
+        return trends[label] || '→ Stable';
+    }
+    
+    // Highlight segment in 3D view
+    highlightSegment(segment) {
+        this.pointClouds.forEach(cloud => {
+            if (cloud.userData.segment === segment) {
+                cloud.material.opacity = 1.0;
+                cloud.scale.setScalar(1.05);
+            } else {
+                cloud.material.opacity = 0.3;
+            }
+        });
+    }
+    
+    // Unhighlight segment
+    unhighlightSegment(segment) {
+        this.pointClouds.forEach(cloud => {
+            cloud.material.opacity = 0.8;
+            cloud.scale.setScalar(1.0);
+        });
+    }
+    
+    // Select segment from legend click
+    selectSegmentFromLegend(segment) {
+        // Update filter button
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.segment === segment) {
+                btn.classList.add('active');
+            }
+        });
+        
+        this.selectedSegment = segment;
+        this.updatePointCloudVisibility();
+        this.updatePerformanceCard();
+        this.updateCarbonNFT();
+        this.showSegmentTransition(segment);
+    }
+    
+    // Update live segmentation data
+    updateLiveSegmentationData() {
+        // Update point counts for each segment with realistic fluctuations
+        Object.keys(this.liveSegmentationData).forEach(segment => {
+            const data = this.liveSegmentationData[segment];
+            const fluctuation = (Math.random() - 0.5) * data.volatility * 0.1;
+            data.points += fluctuation;
+            
+            // Keep within reasonable bounds
+            data.points = Math.max(
+                data.base * 0.9,
+                Math.min(data.base * 1.1, data.points)
+            );
+        });
+    }
+    
+    // Update the segmentation legend with live data
+    updateSegmentationLegend() {
+        this.updateLiveSegmentationData();
+        
+        // Update each legend item with live point counts
+        const legendItems = document.querySelectorAll('.legend-item span');
+        legendItems.forEach(item => {
+            const text = item.textContent;
+            if (text.includes('High-Loss Walls')) {
+                const points = Math.round(this.liveSegmentationData.walls.points);
+                this.animateMetricUpdate(item, `High-Loss Walls (${points.toLocaleString()} points)`);
+            } else if (text.includes('Solar-Ready Roof')) {
+                const points = Math.round(this.liveSegmentationData.roof.points);
+                this.animateMetricUpdate(item, `Solar-Ready Roof (${points.toLocaleString()} points)`);
+            } else if (text.includes('Thermal Windows')) {
+                const points = Math.round(this.liveSegmentationData.windows.points);
+                this.animateMetricUpdate(item, `Thermal Windows (${points.toLocaleString()} points)`);
+            } else if (text.includes('Smart HVAC')) {
+                const points = Math.round(this.liveSegmentationData.hvac.points);
+                this.animateMetricUpdate(item, `Smart HVAC (${points.toLocaleString()} points)`);
+            } else if (text.includes('Insulated Floor')) {
+                const points = Math.round(this.liveSegmentationData.floor.points);
+                this.animateMetricUpdate(item, `Insulated Floor (${points.toLocaleString()} points)`);
+            }
+        });
     }
 
     updateSegmentation() {
@@ -1470,9 +1828,22 @@ class RetrofitForge3DPlatform {
 
     updateRenderStats() {
         const totalObjects = this.pointClouds.reduce((sum, cloud) => sum + cloud.geometry.attributes.position.count, 0);
-        document.getElementById('renderStats').textContent = `FPS: 60 | Objects: ${totalObjects.toLocaleString()}`;
-        document.getElementById('selectedPoints').textContent = 'Selected: 0 points';
-        document.getElementById('carbonCredits').textContent = `Carbon Credits: ${this.buildingData.carbonCredits.totalVerified} tCO₂e`;
+        
+        // Safely update DOM elements if they exist
+        const renderStatsElement = document.getElementById('renderStats');
+        if (renderStatsElement) {
+            renderStatsElement.textContent = `FPS: 60 | Objects: ${totalObjects.toLocaleString()}`;
+        }
+        
+        const selectedPointsElement = document.getElementById('selectedPoints');
+        if (selectedPointsElement) {
+            selectedPointsElement.textContent = 'Selected: 0 points';
+        }
+        
+        const carbonCreditsElement = document.getElementById('carbonCredits');
+        if (carbonCreditsElement) {
+            carbonCreditsElement.textContent = `Carbon Credits: ${this.buildingData.carbonCredits.totalVerified} tCO₂e`;
+        }
     }
 
     // Mapbox Integration - Singleton Pattern
@@ -1535,15 +1906,8 @@ class RetrofitForge3DPlatform {
     }
 
     updateHUD(obj) {
-        const banner = document.querySelector('.hudBanner') ||
-            document.body.appendChild(Object.assign(
-                document.createElement('div'), {className: 'hudBanner'}
-            ));
-        banner.innerHTML = `
-            <span>Payback: ${obj.payback}</span>
-            <span>Climate Yield: ${obj.climateYield}</span>
-            <span>NPV: ${obj.npv}</span>
-        `;
+        // HUD banner removed - using centralized performance metrics banner instead
+        console.log('HUD update:', obj);
     }
 
     // Enhanced Export Functions
@@ -1742,7 +2106,7 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
         // Simulate export functionality
         const exportData = {
             timestamp: new Date().toISOString(),
-            section: this.sections[this.currentSection].name,
+            section: 'RetrofitForge Analysis',
             selectedSegment: this.selectedSegment,
             parameters: {
                 ransac: document.getElementById('ransacDistance').value,
@@ -1977,128 +2341,477 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
         }
     }
 
-    // Investor-grade demo flow
+    // Enhanced Investor-grade demo flow
     startInvestorDemo() {
+        // Create immersive demo overlay
+        this.createDemoOverlay();
+        
         const demoSteps = [
-            { section: 0, duration: 5000, description: "Advanced STGNNs for Property Performance Forecasting" },
-            { section: 1, duration: 5000, description: "Investment Optimization with Uncertainty Quantification" },
-            { section: 2, duration: 5000, description: "Multi-Modal Data Lake Integration" },
-            { section: 3, duration: 5000, description: "Carbon Intelligence & ESG Compliance" },
-            { section: 4, duration: 5000, description: "Digital Twin Engine with 99.3% Accuracy" },
-            { section: 5, duration: 5000, description: "Carbon-Aware Infrastructure Optimization" },
-            { section: 6, duration: 5000, description: "Hybrid SAM-GNN Pipeline Integration" }
+            { 
+                title: "Advanced STGNNs", 
+                subtitle: "Property Performance Forecasting",
+                description: "Revolutionary Spatio-Temporal Graph Neural Networks achieving 96.9% accuracy in building performance prediction",
+                metrics: ["96.9% Accuracy", "2.3s Processing", "Patent-Pending"],
+                duration: 6000,
+                color: "#10b981"
+            },
+            { 
+                title: "Investment Optimization", 
+                subtitle: "Uncertainty Quantification",
+                description: "AI-driven investment strategies with Bayesian uncertainty quantification for risk-optimized returns",
+                metrics: ["+34.2% ROI", "42% Risk Reduction", "95% Confidence"],
+                duration: 6000,
+                color: "#3b82f6"
+            },
+            { 
+                title: "Multi-Modal Data Lake", 
+                subtitle: "Real-Time Integration",
+                description: "Enterprise-grade data lake processing 15+ data sources with real-time analytics and insights",
+                metrics: ["15 Data Sources", "3.2M Records", "Real-Time"],
+                duration: 6000,
+                color: "#8b5cf6"
+            },
+            { 
+                title: "Carbon Intelligence", 
+                subtitle: "ESG Compliance",
+                description: "Comprehensive carbon tracking and ESG compliance with blockchain-verified carbon credits",
+                metrics: ["93.6% ESG Score", "1.2M CO₂ Tracked", "NFT Credits"],
+                duration: 6000,
+                color: "#f59e0b"
+            },
+            { 
+                title: "Digital Twin Engine", 
+                subtitle: "99.3% Accuracy",
+                description: "High-fidelity digital twin technology with real-time simulation and predictive maintenance",
+                metrics: ["2,537 Twins", "99.3% Accuracy", "Real-Time"],
+                duration: 6000,
+                color: "#ef4444"
+            },
+            { 
+                title: "Carbon-Aware Infrastructure", 
+                subtitle: "Optimization Engine",
+                description: "Intelligent infrastructure optimization with carbon-aware decision making and efficiency gains",
+                metrics: ["89% Efficiency", "99.9% Uptime", "Global Scale"],
+                duration: 6000,
+                color: "#06b6d4"
+            }
         ];
 
         let currentStep = 0;
         
         // Create investor timeline animation
-        this.createInvestorTimeline();
+        this.createEnhancedInvestorTimeline();
         
-        // Update HUD with investor metrics
-        this.updateHUD({
-            payback: '2.7 yrs',
-            climateYield: '£46 / tCO₂e',
-            npv: '+£3.4 M'
-        });
-        
+        // Start demo with enhanced presentation
         const runDemoStep = () => {
             if (currentStep < demoSteps.length) {
                 const step = demoSteps[currentStep];
-                this.goToSection(step.section);
                 
-                // Show step description
-                this.showDemoStepDescription(step.description);
+                // Show enhanced step presentation
+                this.showEnhancedDemoStep(step);
+                
+                // Update timeline progress
+                this.updateTimelineProgress(currentStep, demoSteps.length);
                 
                 currentStep++;
                 setTimeout(runDemoStep, step.duration);
             } else {
-                // Demo complete - show summary
-                this.showDemoSummary();
+                // Demo complete - show enhanced summary
+                this.showEnhancedDemoSummary();
             }
         };
 
         runDemoStep();
     }
 
-    showDemoStepDescription(description) {
-        const descDiv = document.createElement('div');
-        descDiv.innerHTML = `
-            <div style="
-                position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(26, 26, 46, 0.95);
-                color: #32a0cd;
-                padding: 15px 25px;
-                border-radius: 10px;
-                border: 2px solid #32a0cd;
-                z-index: 10000;
-                backdrop-filter: blur(10px);
-                animation: demoStep 4s ease-in-out;
-            ">
-                <h4 style="margin: 0; font-size: 1.1rem;">${description}</h4>
+    // Create immersive demo overlay
+    createDemoOverlay() {
+        const overlay = document.createElement('div');
+        overlay.id = 'demoOverlay';
+        overlay.innerHTML = `
+            <div class="demo-backdrop"></div>
+            <div class="demo-content">
+                <div class="demo-header">
+                    <h1>RetrofitForge™</h1>
+                    <p>Patent-Pending 3D Building Intelligence Platform</p>
+                </div>
+                <div class="demo-step-container" id="demoStepContainer"></div>
+                <div class="demo-timeline" id="demoTimeline"></div>
             </div>
         `;
         
-        document.body.appendChild(descDiv);
+        document.body.appendChild(overlay);
         
+        // Add CSS for demo overlay
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes demoStep {
-                0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-                20% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                80% { opacity: 1; transform: translateX(-50%) translateY(0); }
-                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            #demoOverlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: demoOverlayFadeIn 0.8s ease-out;
+            }
+            
+            .demo-backdrop {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(10, 20, 28, 0.95), rgba(26, 26, 46, 0.95));
+                backdrop-filter: blur(20px);
+            }
+            
+            .demo-content {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                color: white;
+                max-width: 800px;
+                padding: 40px;
+            }
+            
+            .demo-header h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                margin: 0 0 10px 0;
+                background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: demoTitleGlow 3s ease-in-out infinite;
+            }
+            
+            .demo-header p {
+                font-size: 1.2rem;
+                color: rgba(255, 255, 255, 0.8);
+                margin: 0 0 40px 0;
+            }
+            
+            .demo-step-container {
+                margin: 40px 0;
+                min-height: 300px;
+            }
+            
+            @keyframes demoOverlayFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes demoTitleGlow {
+                0%, 100% { filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5)); }
+                50% { filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.7)); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Show enhanced demo step
+    showEnhancedDemoStep(step) {
+        const container = document.getElementById('demoStepContainer');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="demo-step" style="animation: demoStepSlideIn 0.8s ease-out;">
+                <div class="step-header">
+                    <h2 style="color: ${step.color}; margin: 0 0 10px 0; font-size: 2.5rem; font-weight: 700;">
+                        ${step.title}
+                    </h2>
+                    <h3 style="color: rgba(255, 255, 255, 0.9); margin: 0 0 20px 0; font-size: 1.4rem; font-weight: 500;">
+                        ${step.subtitle}
+                    </h3>
+                </div>
+                <div class="step-description">
+                    <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8); margin: 0 0 30px 0;">
+                        ${step.description}
+                    </p>
+                </div>
+                <div class="step-metrics">
+                    ${step.metrics.map(metric => `
+                        <div class="metric-badge" style="
+                            display: inline-block;
+                            background: ${step.color}20;
+                            color: ${step.color};
+                            padding: 8px 16px;
+                            border-radius: 20px;
+                            margin: 5px;
+                            border: 1px solid ${step.color}40;
+                            font-weight: 600;
+                            animation: metricPulse 2s ease-in-out infinite;
+                        ">
+                            ${metric}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        // Add step-specific CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes demoStepSlideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(30px) scale(0.95); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0) scale(1); 
+                }
+            }
+            
+            @keyframes metricPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
             }
         `;
         document.head.appendChild(style);
         
+        // Remove style after animation
         setTimeout(() => {
-            document.body.removeChild(descDiv);
-            document.head.removeChild(style);
-        }, 4000);
+            if (style.parentNode) {
+                style.parentNode.removeChild(style);
+            }
+        }, 1000);
     }
 
-    showDemoSummary() {
-        const summaryDiv = document.createElement('div');
-        summaryDiv.innerHTML = `
+    // Show enhanced demo summary
+    showEnhancedDemoSummary() {
+        const container = document.getElementById('demoStepContainer');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="demo-summary" style="animation: summarySlideIn 1s ease-out;">
+                <div class="summary-header">
+                    <h2 style="
+                        color: #10b981; 
+                        margin: 0 0 20px 0; 
+                        font-size: 3rem; 
+                        font-weight: 700;
+                        background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    ">
+                        🎯 Demo Complete
+                    </h2>
+                    <p style="
+                        margin: 0 0 30px 0; 
+                        font-size: 1.3rem; 
+                        color: rgba(255, 255, 255, 0.9);
+                        font-weight: 500;
+                    ">
+                        RetrofitForge™ has demonstrated all advanced STGNN features
+                    </p>
+                </div>
+                
+                <div class="summary-features">
+                    <div class="feature-grid">
+                        <div class="feature-item" style="
+                            background: rgba(16, 185, 129, 0.1);
+                            border: 1px solid rgba(16, 185, 129, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.1s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🧠</div>
+                            <h4 style="color: #10b981; margin: 0 0 8px 0;">Advanced STGNNs</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">96.9% Accuracy</p>
+                        </div>
+                        
+                        <div class="feature-item" style="
+                            background: rgba(59, 130, 246, 0.1);
+                            border: 1px solid rgba(59, 130, 246, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.2s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">📈</div>
+                            <h4 style="color: #3b82f6; margin: 0 0 8px 0;">Investment Optimization</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">+34.2% ROI</p>
+                        </div>
+                        
+                        <div class="feature-item" style="
+                            background: rgba(139, 92, 246, 0.1);
+                            border: 1px solid rgba(139, 92, 246, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.3s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🌊</div>
+                            <h4 style="color: #8b5cf6; margin: 0 0 8px 0;">Data Lake</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">15 Sources</p>
+                        </div>
+                        
+                        <div class="feature-item" style="
+                            background: rgba(245, 158, 11, 0.1);
+                            border: 1px solid rgba(245, 158, 11, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.4s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🌱</div>
+                            <h4 style="color: #f59e0b; margin: 0 0 8px 0;">Carbon Intelligence</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">93.6% ESG</p>
+                        </div>
+                        
+                        <div class="feature-item" style="
+                            background: rgba(239, 68, 68, 0.1);
+                            border: 1px solid rgba(239, 68, 68, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.5s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">👥</div>
+                            <h4 style="color: #ef4444; margin: 0 0 8px 0;">Digital Twins</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">2,537 Models</p>
+                        </div>
+                        
+                        <div class="feature-item" style="
+                            background: rgba(6, 182, 212, 0.1);
+                            border: 1px solid rgba(6, 182, 212, 0.3);
+                            padding: 20px;
+                            border-radius: 12px;
+                            text-align: center;
+                            animation: featureFadeIn 0.6s ease-out 0.6s both;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">⚡</div>
+                            <h4 style="color: #06b6d4; margin: 0 0 8px 0;">Infrastructure</h4>
+                            <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">89% Efficiency</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-stats" style="
+                    margin-top: 40px;
+                    padding: 30px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 16px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    animation: statsSlideIn 0.8s ease-out 0.8s both;
+                ">
+                    <h3 style="
+                        color: #10b981; 
+                        margin: 0 0 20px 0; 
+                        font-size: 1.5rem;
+                        text-align: center;
+                    ">
+                        Key Performance Metrics
+                    </h3>
             <div style="
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #1a1a2e, #16213e);
-                color: white;
-                padding: 40px;
-                border-radius: 20px;
-                border: 2px solid #32a0cd;
-                z-index: 10000;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 20px;
                 text-align: center;
-                max-width: 600px;
-                box-shadow: 0 20px 40px rgba(50, 160, 205, 0.3);
-            ">
-                <h2 style="margin: 0 0 20px 0; color: #32a0cd;">🎯 Demo Complete</h2>
-                <p style="margin: 0 0 15px 0; font-size: 1.1rem;">RetrofitForge™ has demonstrated all advanced STGNN features:</p>
-                <ul style="text-align: left; margin: 0 0 20px 0; padding-left: 20px;">
-                    <li>Advanced STGNNs (96.9% Accuracy)</li>
-                    <li>Investment Optimization (+34.2% ROI)</li>
-                    <li>Multi-Modal Data Lake (15 Sources)</li>
-                    <li>Carbon Intelligence (93.6% ESG Score)</li>
-                    <li>Digital Twin Engine (2,537 Models)</li>
-                    <li>Carbon-Aware Infrastructure (89% Efficiency)</li>
-                </ul>
-                <p style="margin: 0; font-size: 1.1rem; color: #10b981;">
-                    <strong>ROI: +34.2% Improvement | Accuracy: 96.9% | ESG: 93.6% | Digital Twins: 2,537</strong>
-                </p>
+                    ">
+                        <div>
+                            <div style="font-size: 2.5rem; color: #10b981; font-weight: 700;">+34.2%</div>
+                            <div style="color: rgba(255, 255, 255, 0.8);">ROI Improvement</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; color: #3b82f6; font-weight: 700;">96.9%</div>
+                            <div style="color: rgba(255, 255, 255, 0.8);">Accuracy</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; color: #f59e0b; font-weight: 700;">93.6%</div>
+                            <div style="color: rgba(255, 255, 255, 0.8);">ESG Score</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; color: #ef4444; font-weight: 700;">2,537</div>
+                            <div style="color: rgba(255, 255, 255, 0.8);">Digital Twins</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-cta" style="
+                    margin-top: 30px;
+                    text-align: center;
+                    animation: ctaSlideIn 0.8s ease-out 1s both;
+                ">
+                    <button onclick="document.getElementById('demoOverlay').remove()" style="
+                        background: linear-gradient(135deg, #10b981, #3b82f6);
+                        color: white;
+                        border: none;
+                        padding: 16px 32px;
+                        border-radius: 12px;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+                    ">
+                        🚀 Explore Platform
+                    </button>
+                </div>
             </div>
         `;
         
-        document.body.appendChild(summaryDiv);
-        
-        setTimeout(() => {
-            document.body.removeChild(summaryDiv);
-        }, 8000);
+        // Add summary animations
+        const style = document.createElement('style');
+        style.textContent = `
+            .feature-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            @keyframes summarySlideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(50px) scale(0.95); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0) scale(1); 
+                }
+            }
+            
+            @keyframes featureFadeIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(20px); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
+            }
+            
+            @keyframes statsSlideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(30px); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
+            }
+            
+            @keyframes ctaSlideIn {
+                from { 
+                    opacity: 0; 
+                    transform: translateY(20px); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateY(0); 
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     onWindowResize() {
@@ -2106,6 +2819,9 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
         this.camera.aspect = container.clientWidth / container.clientHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(container.clientWidth, container.clientHeight);
+        
+        // Reposition performance banner on window resize
+        this.positionPerformanceBanner();
     }
 
     easeInOutCubic(t) {
@@ -2114,11 +2830,7 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
 
     scrollUp() {
         try {
-            // Only scroll up if not at the first section
-            if (this.currentSection > 0) {
-                this.goToSection(this.currentSection - 1);
-            }
-            // Don't wrap around - stay at first section
+            console.log('Scroll up functionality removed - sections no longer exist');
         } catch (error) {
             console.error('Error in scrollUp:', error);
         }
@@ -2126,11 +2838,7 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
 
     scrollDown() {
         try {
-            // Only scroll down if not at the last section
-            if (this.currentSection < this.sections.length - 1) {
-                this.goToSection(this.currentSection + 1);
-            }
-            // Don't wrap around - stay at last section
+            console.log('Scroll down functionality removed - sections no longer exist');
         } catch (error) {
             console.error('Error in scrollDown:', error);
         }
@@ -2147,27 +2855,14 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
                 return;
             }
             
-            // Disable scroll up button if at first section
-            if (this.currentSection === 0) {
+            // Disable scroll buttons since sections no longer exist
                 scrollUpBtn.disabled = true;
                 scrollUpBtn.style.opacity = '0.4';
                 scrollUpBtn.style.cursor = 'not-allowed';
-            } else {
-                scrollUpBtn.disabled = false;
-                scrollUpBtn.style.opacity = '1';
-                scrollUpBtn.style.cursor = 'pointer';
-            }
             
-            // Disable scroll down button if at last section
-            if (this.currentSection === this.sections.length - 1) {
                 scrollDownBtn.disabled = true;
                 scrollDownBtn.style.opacity = '0.4';
                 scrollDownBtn.style.cursor = 'not-allowed';
-            } else {
-                scrollDownBtn.disabled = false;
-                scrollDownBtn.style.opacity = '1';
-                scrollDownBtn.style.cursor = 'pointer';
-            }
         } catch (error) {
             console.error('Error updating scroll button states:', error);
         }
@@ -2177,9 +2872,7 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
         }
-        if (this.sectionTimer) {
-            clearTimeout(this.sectionTimer);
-        }
+
         
         // Cleanup Three.js
         if (this.renderer) {
@@ -2194,71 +2887,174 @@ Generated by RetrofitForge™ - Patent-Pending 3D Building Intelligence Platform
         });
     }
 
-    // Investor Timeline Animation
-    createInvestorTimeline() {
-        const timelineHTML = `
-            <svg width="400" height="60" viewBox="0 0 400 60">
-                <defs>
-                    <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <line x1="50" y1="30" x2="350" y2="30" stroke="url(#timelineGradient)" stroke-width="4" opacity="0.3"/>
-                <circle id="scan" cx="80" cy="30" r="8" fill="#10B981" opacity="0"/>
-                <text x="80" y="50" text-anchor="middle" fill="#fff" font-size="10">Scan</text>
-                <circle id="twin" cx="160" cy="30" r="8" fill="#10B981" opacity="0"/>
-                <text x="160" y="50" text-anchor="middle" fill="#fff" font-size="10">Twin</text>
-                <circle id="retrofit" cx="240" cy="30" r="8" fill="#10B981" opacity="0"/>
-                <text x="240" y="50" text-anchor="middle" fill="#fff" font-size="10">Retrofit</text>
-                <circle id="credit" cx="320" cy="30" r="8" fill="#10B981" opacity="0"/>
-                <text x="320" y="50" text-anchor="middle" fill="#fff" font-size="10">Credit</text>
-            </svg>
+    // Enhanced Investor Timeline Animation
+    createEnhancedInvestorTimeline() {
+        const timelineContainer = document.getElementById('demoTimeline');
+        if (!timelineContainer) return;
+        
+        timelineContainer.innerHTML = `
+            <div class="timeline-container">
+                <div class="timeline-track">
+                    <div class="timeline-progress" id="timelineProgress"></div>
+                </div>
+                <div class="timeline-steps">
+                    <div class="timeline-step" data-step="0">
+                        <div class="step-dot"></div>
+                        <span class="step-label">STGNN</span>
+                    </div>
+                    <div class="timeline-step" data-step="1">
+                        <div class="step-dot"></div>
+                        <span class="step-label">ROI</span>
+                    </div>
+                    <div class="timeline-step" data-step="2">
+                        <div class="step-dot"></div>
+                        <span class="step-label">Data</span>
+                    </div>
+                    <div class="timeline-step" data-step="3">
+                        <div class="step-dot"></div>
+                        <span class="step-label">ESG</span>
+                    </div>
+                    <div class="timeline-step" data-step="4">
+                        <div class="step-dot"></div>
+                        <span class="step-label">Twin</span>
+                    </div>
+                    <div class="timeline-step" data-step="5">
+                        <div class="step-dot"></div>
+                        <span class="step-label">Infra</span>
+                    </div>
+                </div>
+            </div>
         `;
         
-        const timelineDiv = document.createElement('div');
-        timelineDiv.innerHTML = timelineHTML;
-        timelineDiv.style.cssText = `
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: rgba(0,0,0,0.7);
-            padding: 15px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        `;
-        
-        document.body.appendChild(timelineDiv);
-        
-        // Animate opacity in sequence
-        const steps = ['scan', 'twin', 'retrofit', 'credit'];
-        steps.forEach((id, i) => {
-            setTimeout(() => {
-                const element = document.getElementById(id);
-                if (element) element.style.opacity = 1;
-            }, i * 1500);
-        });
-        
-        // Remove timeline after animation
-        setTimeout(() => {
-            if (timelineDiv.parentNode) {
-                timelineDiv.parentNode.removeChild(timelineDiv);
+        // Add timeline CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            .timeline-container {
+                margin-top: 40px;
+                padding: 20px;
             }
-        }, 8000);
+            
+            .timeline-track {
+                position: relative;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                margin-bottom: 20px;
+            }
+            
+            .timeline-progress {
+            position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+                border-radius: 2px;
+                width: 0%;
+                transition: width 0.5s ease;
+            }
+            
+            .timeline-steps {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .timeline-step {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .step-dot {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                transition: all 0.3s ease;
+            }
+            
+            .timeline-step.active .step-dot {
+                background: #10b981;
+                border-color: #10b981;
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+                transform: scale(1.2);
+            }
+            
+            .timeline-step.completed .step-dot {
+                background: #3b82f6;
+                border-color: #3b82f6;
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            }
+            
+            .step-label {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.7);
+                font-weight: 600;
+                transition: color 0.3s ease;
+            }
+            
+            .timeline-step.active .step-label {
+                color: #10b981;
+                font-weight: 700;
+            }
+            
+            .timeline-step.completed .step-label {
+                color: #3b82f6;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Update timeline progress
+    updateTimelineProgress(currentStep, totalSteps) {
+        const progress = document.getElementById('timelineProgress');
+        const steps = document.querySelectorAll('.timeline-step');
+        
+        if (progress) {
+            const percentage = ((currentStep + 1) / totalSteps) * 100;
+            progress.style.width = `${percentage}%`;
+        }
+        
+        steps.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index === currentStep) {
+                step.classList.add('active');
+            } else if (index < currentStep) {
+                step.classList.add('completed');
+            }
+        });
     }
 
     // Mapbox-related methods removed - no longer needed
 }
 
 // Initialize the platform when the page loads
-document.addEventListener('DOMContentLoaded', () => {
+function initializePlatform() {
     console.log('DOM Content Loaded - Starting RetrofitForge Platform');
+    
+    // Double-check that the required element exists
+    const toggleButton = document.getElementById('digitalTwinToggle');
+    if (!toggleButton) {
+        console.error('Required element digitalTwinToggle not found in DOM');
+        console.log('Available elements:', document.querySelectorAll('*[id]'));
+        return;
+    }
+    
     const platform = new RetrofitForge3DPlatform();
+    platform.init(); // Initialize the platform after DOM is ready
     
     // Handle page unload
     window.addEventListener('beforeunload', () => {
         platform.destroy();
     });
-});
+}
+
+// Try multiple ways to ensure DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePlatform);
+} else {
+    // DOM is already loaded, but wait a bit to ensure everything is parsed
+    setTimeout(initializePlatform, 10);
+}

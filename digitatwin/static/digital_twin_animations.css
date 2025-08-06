@@ -1,0 +1,225 @@
+/* Animation Effects for RetrofitForge-AI Digital Twin Engine */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+    }
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Animation Classes */
+.animate-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-right {
+    animation: slideInRight 0.6s ease-out;
+}
+
+.animate-slide-left {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.animate-count {
+    animation: countUp 0.8s ease-out;
+}
+
+/* Hover Animations */
+.metric-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.nav-btn, .control-btn {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn:hover, .control-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Loading Animations */
+.loading-screen .loading-content > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.loading-screen .loading-content > *:nth-child(1) { animation-delay: 0.1s; }
+.loading-screen .loading-content > *:nth-child(2) { animation-delay: 0.2s; }
+.loading-screen .loading-content > *:nth-child(3) { animation-delay: 0.3s; }
+.loading-screen .loading-content > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Point Cloud Animation Effects */
+.point-cloud-highlight {
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+.analysis-highlight {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Metric Update Animations */
+@keyframes metricUpdate {
+    0% { 
+        transform: scale(1);
+        color: inherit;
+    }
+    50% { 
+        transform: scale(1.1);
+        color: #00ff88;
+    }
+    100% { 
+        transform: scale(1);
+        color: inherit;
+    }
+}
+
+.metric-updating {
+    animation: metricUpdate 0.6s ease-out;
+}
+
+/* Section Transition Effects */
+.section-transition-enter {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
+.section-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+    animation: slideInLeft 0.5s ease-out forwards;
+    animation-direction: reverse;
+}
+
+/* Presentation Mode Animations */
+.presentation-mode .ui-overlay > * {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.presentation-mode .metrics-dashboard .metric-card:nth-child(1) { animation-delay: 0.2s; }
+.presentation-mode .metrics-dashboard .metric-card:nth-child(2) { animation-delay: 0.4s; }
+.presentation-mode .metrics-dashboard .metric-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Narration Text Animation */
+.narration-text-typing {
+    overflow: hidden;
+    border-right: 2px solid #00ff88;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00ff88; }
+}
+
+/* Building Analysis Highlight Animation */
+.building-component-highlight {
+    animation: componentHighlight 2s ease-in-out infinite;
+}
+
+@keyframes componentHighlight {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* ROI Chart Animation */
+.roi-chart-animate {
+    animation: chartGrow 2s ease-out;
+}
+
+@keyframes chartGrow {
+    0% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+}
+
+/* Carbon Savings Counter Animation */
+.carbon-counter {
+    animation: carbonCount 3s ease-out;
+}
+
+@keyframes carbonCount {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+}

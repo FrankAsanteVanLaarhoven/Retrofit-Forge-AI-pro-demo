@@ -96,6 +96,59 @@ RetrofitForge is a revolutionary 3D building segmentation platform that combines
 - **Interactive Elements**: Real-time parameter adjustments
 - **Export Functions**: Generate reports and mint carbon NFTs
 
+## 🎨 UI/UX Implementation Guidelines
+
+### Centralized Section Banner System
+All section banners and analytics overlays use a **fixed, centralized positioning system** to ensure consistent user experience:
+
+#### CSS Implementation
+```css
+.sectionBanner {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    background: rgba(10, 20, 28, 0.96);
+    color: #fff;
+    min-width: 220px;
+    max-width: 420px;
+    padding: 13px 22px;
+    border-radius: 9px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+```
+
+#### JavaScript Implementation
+```javascript
+// Centralized section banner update function - only updates content, never position
+renderSectionBanner(idx, total, label) {
+    const el = document.getElementById('sectionBannerText');
+    if (el) {
+        el.textContent = `Section ${idx}/${total}: ${label}`;
+    }
+}
+```
+
+#### Key Principles
+- **Fixed Position**: Banner always appears in the exact same screen location
+- **Content Updates Only**: Never re-position or re-parent the banner element
+- **Consistent Z-Index**: Ensures banner appears above all map/canvas layers
+- **Responsive Design**: Maintains center alignment across all screen sizes
+
+### Analytics Overlay Consistency
+All analytics overlays (charts, KPIs, performance cards) follow the same pattern:
+- Use absolute positioning with `left: 50%` and `transform: translateX(-50%)`
+- Choose fixed `top:` or `bottom:` offsets to avoid collisions
+- Only update content, never reposition elements
+
 ## 🛠️ Technical Stack
 
 ### Frontend

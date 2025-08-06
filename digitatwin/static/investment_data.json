@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "buildingId": "22BISHOPSGATE_EC2",
+    "analysisDate": "2024-08-06T02:30:00Z",
+    "investmentHorizon": "10_years",
+    "currency": "GBP",
+    "inflationRate": 2.5,
+    "discountRate": 8.0
+  },
+  "currentMetrics": {
+    "propertyValue": 850000000,
+    "annualRent": 42500000,
+    "operatingExpenses": 8900000,
+    "netOperatingIncome": 33600000,
+    "capRate": 3.95,
+    "occupancyRate": 94.2,
+    "energyCosts": 890000,
+    "maintenanceCosts": 2100000
+  },
+  "retrofitInvestments": {
+    "totalInvestment": 15600000,
+    "breakdown": {
+      "thermalInsulation": {
+        "amount": 4200000,
+        "percentage": 26.9,
+        "paybackPeriod": 2.1,
+        "annualSavings": 2000000,
+        "roi": 47.6
+      },
+      "solarInstallation": {
+        "amount": 8900000,
+        "percentage": 57.1,
+        "paybackPeriod": 4.2,
+        "annualSavings": 2120000,
+        "roi": 23.8
+      },
+      "hvacUpgrade": {
+        "amount": 1800000,
+        "percentage": 11.5,
+        "paybackPeriod": 1.8,
+        "annualSavings": 1000000,
+        "roi": 55.6
+      },
+      "smartControls": {
+        "amount": 700000,
+        "percentage": 4.5,
+        "paybackPeriod": 1.2,
+        "annualSavings": 580000,
+        "roi": 82.9
+      }
+    }
+  },
+  "financialProjections": {
+    "year1": {
+      "energySavings": 5700000,
+      "carbonCredits": 13791,
+      "maintenanceSavings": 420000,
+      "totalSavings": 6157791,
+      "cumulativeSavings": 6157791,
+      "roi": 39.5
+    },
+    "year2": {
+      "energySavings": 5985000,
+      "carbonCredits": 14480,
+      "maintenanceSavings": 441000,
+      "totalSavings": 6473480,
+      "cumulativeSavings": 12631271,
+      "roi": 81.0
+    },
+    "year3": {
+      "energySavings": 6284250,
+      "carbonCredits": 15204,
+      "maintenanceSavings": 463050,
+      "totalSavings": 6797154,
+      "cumulativeSavings": 19428425,
+      "roi": 124.5
+    },
+    "year4": {
+      "energySavings": 6598463,
+      "carbonCredits": 15964,
+      "maintenanceSavings": 486203,
+      "totalSavings": 7137030,
+      "cumulativeSavings": 26565455,
+      "roi": 170.3
+    },
+    "year5": {
+      "energySavings": 6928386,
+      "carbonCredits": 16762,
+      "maintenanceSavings": 510513,
+      "totalSavings": 7494661,
+      "cumulativeSavings": 34060116,
+      "roi": 218.3
+    },
+    "year10": {
+      "energySavings": 8400000,
+      "carbonCredits": 20000,
+      "maintenanceSavings": 600000,
+      "totalSavings": 9080000,
+      "cumulativeSavings": 75000000,
+      "roi": 480.8
+    }
+  },
+  "riskAnalysis": {
+    "marketRisk": {
+      "level": "low",
+      "score": 0.15,
+      "factors": ["prime_location", "long_term_tenants", "diversified_income"]
+    },
+    "technologyRisk": {
+      "level": "medium",
+      "score": 0.35,
+      "factors": ["proven_technologies", "warranty_coverage", "maintenance_contracts"]
+    },
+    "regulatoryRisk": {
+      "level": "low",
+      "score": 0.20,
+      "factors": ["compliance_exceeds_requirements", "future_proof_design", "flexible_systems"]
+    },
+    "operationalRisk": {
+      "level": "low",
+      "score": 0.25,
+      "factors": ["professional_management", "redundant_systems", "monitoring_platform"]
+    }
+  },
+  "sensitivityAnalysis": {
+    "energyPriceIncrease": {
+      "scenario": "20% increase in energy prices",
+      "impact": "Additional £1.14M annual savings",
+      "roiImprovement": "+7.3%"
+    },
+    "carbonPriceIncrease": {
+      "scenario": "Carbon price rises to £50/tCO2e",
+      "impact": "Additional £0.23M annual revenue",
+      "roiImprovement": "+1.5%"
+    },
+    "occupancyIncrease": {
+      "scenario": "Occupancy rises to 98%",
+      "impact": "Additional £1.6M annual revenue",
+      "roiImprovement": "+10.3%"
+    }
+  },
+  "comparativeAnalysis": {
+    "peerComparison": {
+      "averageROI": 12.5,
+      "ourROI": 34.2,
+      "advantage": "+173%",
+      "ranking": "top_5_percent"
+    },
+    "marketBenchmarks": {
+      "officeRetrofitROI": 15.8,
+      "ourROI": 34.2,
+      "advantage": "+116%",
+      "ranking": "excellent"
+    },
+    "sustainabilityMetrics": {
+      "averageCarbonReduction": 18.5,
+      "ourReduction": 24.3,
+      "advantage": "+31%",
+      "ranking": "outstanding"
+    }
+  },
+  "investmentThesis": {
+    "summary": "22 Bishopsgate represents a unique opportunity to demonstrate the financial viability of advanced building retrofits using cutting-edge AI and digital twin technology.",
+    "keyDrivers": [
+      "Proven ROI of 34.2% with 2.1-year payback",
+      "Significant carbon reduction (24.3%) with monetizable credits",
+      "Future-proof technology with 10+ year lifespan",
+      "Prime location with stable, long-term tenants",
+      "Regulatory compliance exceeding current and future requirements"
+    ],
+    "exitStrategy": {
+      "timeline": "5-7 years",
+      "options": ["sale_to_institutional_investor", "refinancing", "portfolio_sale"],
+      "expectedMultiple": "1.8-2.2x invested capital"
+    }
+  },
+  "realTimeMetrics": {
+    "currentROI": 34.2,
+    "paybackPeriod": 2.1,
+    "annualSavings": 5700000,
+    "carbonReduction": 24.3,
+    "esgScore": 93.6,
+    "lastUpdated": "2024-08-06T02:30:00Z"
+  }
+} 

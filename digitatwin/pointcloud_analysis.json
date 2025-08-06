@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "totalPoints": 125847,
+    "analysisDate": "2024-08-06T02:30:00Z",
+    "buildingId": "22BISHOPSGATE_EC2",
+    "analysisType": "STGNN_3D_POINT_CLOUD_ANALYSIS",
+    "accuracy": 96.8,
+    "processingTime": 2.2
+  },
+  "segments": {
+    "highLossWalls": {
+      "pointCount": 45678,
+      "percentage": 36.3,
+      "color": "#3b82f6",
+      "thermalEfficiency": 0.42,
+      "priority": "high",
+      "estimatedSavings": 89000,
+      "components": [
+        {
+          "id": "wall_001",
+          "type": "exterior_wall",
+          "material": "concrete_panel",
+          "area": 245.6,
+          "uValue": 2.8,
+          "recommendation": "insulate_with_thermal_blanket",
+          "cost": 15600,
+          "savings": 8900
+        },
+        {
+          "id": "wall_002",
+          "type": "exterior_wall",
+          "material": "glass_curtain",
+          "area": 189.3,
+          "uValue": 3.2,
+          "recommendation": "replace_with_triple_glazing",
+          "cost": 28400,
+          "savings": 12300
+        }
+      ]
+    },
+    "solarReadyRoof": {
+      "pointCount": 23456,
+      "percentage": 18.6,
+      "color": "#10b981",
+      "solarPotential": 0.89,
+      "priority": "medium",
+      "estimatedSavings": 67000,
+      "components": [
+        {
+          "id": "roof_001",
+          "type": "flat_roof",
+          "material": "bitumen_membrane",
+          "area": 1250.8,
+          "solarCapacity": 450,
+          "recommendation": "install_solar_panels",
+          "cost": 89000,
+          "savings": 67000
+        }
+      ]
+    },
+    "thermalWindows": {
+      "pointCount": 18934,
+      "percentage": 15.0,
+      "color": "#f59e0b",
+      "thermalEfficiency": 0.38,
+      "priority": "high",
+      "estimatedSavings": 45000,
+      "components": [
+        {
+          "id": "window_001",
+          "type": "double_glazed",
+          "material": "aluminum_frame",
+          "area": 89.2,
+          "uValue": 2.1,
+          "recommendation": "upgrade_to_triple_glazing",
+          "cost": 15600,
+          "savings": 8900
+        }
+      ]
+    },
+    "smartHVAC": {
+      "pointCount": 15678,
+      "percentage": 12.5,
+      "color": "#8b5cf6",
+      "efficiency": 0.67,
+      "priority": "medium",
+      "estimatedSavings": 38000,
+      "components": [
+        {
+          "id": "hvac_001",
+          "type": "air_handling_unit",
+          "model": "carrier_48tc",
+          "age": 12,
+          "efficiency": 0.67,
+          "recommendation": "replace_with_variable_speed",
+          "cost": 45000,
+          "savings": 18000
+        }
+      ]
+    },
+    "insulatedFloor": {
+      "pointCount": 22101,
+      "percentage": 17.6,
+      "color": "#06b6d4",
+      "thermalEfficiency": 0.71,
+      "priority": "low",
+      "estimatedSavings": 25000,
+      "components": [
+        {
+          "id": "floor_001",
+          "type": "ground_floor",
+          "material": "concrete_slab",
+          "area": 890.4,
+          "uValue": 1.8,
+          "recommendation": "add_underfloor_insulation",
+          "cost": 22000,
+          "savings": 12000
+        }
+      ]
+    }
+  },
+  "analysisMetrics": {
+    "totalArea": 121000,
+    "totalComponents": 1847,
+    "averageUValue": 2.4,
+    "thermalEfficiency": 0.58,
+    "energyConsumption": 2450,
+    "carbonEmissions": 1430,
+    "annualCost": 890000,
+    "potentialSavings": 264000,
+    "roiImprovement": 34.2
+  },
+  "realTimeData": {
+    "currentTemperature": 22.4,
+    "humidity": 45.2,
+    "occupancy": 78.3,
+    "energyUsage": 245.6,
+    "carbonIntensity": 0.89,
+    "lastUpdated": "2024-08-06T02:30:00Z"
+  }
+} 

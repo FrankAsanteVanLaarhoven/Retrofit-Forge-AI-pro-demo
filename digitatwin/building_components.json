@@ -1,0 +1,268 @@
+{
+  "metadata": {
+    "buildingId": "22BISHOPSGATE_EC2",
+    "totalComponents": 1847,
+    "analysisDate": "2024-08-06T02:30:00Z",
+    "lastUpdated": "2024-08-06T02:30:00Z",
+    "version": "1.0.0"
+  },
+  "components": {
+    "structural": {
+      "count": 342,
+      "components": [
+        {
+          "id": "struct_001",
+          "type": "concrete_column",
+          "location": "ground_floor",
+          "material": "reinforced_concrete",
+          "age": 5,
+          "condition": "excellent",
+          "maintenanceRequired": false,
+          "nextInspection": "2025-06-15",
+          "efficiency": 0.95
+        },
+        {
+          "id": "struct_002",
+          "type": "steel_beam",
+          "location": "level_15",
+          "material": "structural_steel",
+          "age": 5,
+          "condition": "excellent",
+          "maintenanceRequired": false,
+          "nextInspection": "2025-08-20",
+          "efficiency": 0.98
+        }
+      ]
+    },
+    "envelope": {
+      "count": 456,
+      "components": [
+        {
+          "id": "env_001",
+          "type": "exterior_wall",
+          "location": "north_facade",
+          "material": "concrete_panel",
+          "area": 245.6,
+          "uValue": 2.8,
+          "age": 5,
+          "condition": "good",
+          "maintenanceRequired": true,
+          "recommendation": "add_thermal_insulation",
+          "efficiency": 0.42,
+          "priority": "high"
+        },
+        {
+          "id": "env_002",
+          "type": "window_system",
+          "location": "east_facade",
+          "material": "double_glazed_aluminum",
+          "area": 89.2,
+          "uValue": 2.1,
+          "age": 5,
+          "condition": "good",
+          "maintenanceRequired": false,
+          "recommendation": "upgrade_to_triple_glazing",
+          "efficiency": 0.38,
+          "priority": "medium"
+        }
+      ]
+    },
+    "mechanical": {
+      "count": 234,
+      "components": [
+        {
+          "id": "mech_001",
+          "type": "air_handling_unit",
+          "location": "plant_room_01",
+          "model": "carrier_48tc",
+          "capacity": "45000_cfm",
+          "age": 12,
+          "condition": "fair",
+          "efficiency": 0.67,
+          "maintenanceRequired": true,
+          "recommendation": "replace_with_variable_speed",
+          "priority": "high",
+          "annualOperatingCost": 45000
+        },
+        {
+          "id": "mech_002",
+          "type": "chiller",
+          "location": "plant_room_02",
+          "model": "trane_cvhe",
+          "capacity": "800_ton",
+          "age": 8,
+          "condition": "good",
+          "efficiency": 0.78,
+          "maintenanceRequired": false,
+          "recommendation": "optimize_controls",
+          "priority": "low",
+          "annualOperatingCost": 120000
+        }
+      ]
+    },
+    "electrical": {
+      "count": 567,
+      "components": [
+        {
+          "id": "elec_001",
+          "type": "transformer",
+          "location": "electrical_room",
+          "capacity": "2000_kva",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.98,
+          "maintenanceRequired": false,
+          "nextInspection": "2025-12-01"
+        },
+        {
+          "id": "elec_002",
+          "type": "switchgear",
+          "location": "electrical_room",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.99,
+          "maintenanceRequired": false,
+          "nextInspection": "2025-11-15"
+        }
+      ]
+    },
+    "plumbing": {
+      "count": 189,
+      "components": [
+        {
+          "id": "plumb_001",
+          "type": "water_heater",
+          "location": "plant_room_03",
+          "capacity": "500_gallons",
+          "age": 5,
+          "condition": "good",
+          "efficiency": 0.85,
+          "maintenanceRequired": false,
+          "nextInspection": "2025-09-10"
+        }
+      ]
+    },
+    "fire_safety": {
+      "count": 89,
+      "components": [
+        {
+          "id": "fire_001",
+          "type": "sprinkler_system",
+          "location": "throughout_building",
+          "age": 5,
+          "condition": "excellent",
+          "maintenanceRequired": false,
+          "nextInspection": "2025-03-15",
+          "compliance": "exceeds_requirements"
+        }
+      ]
+    },
+    "elevators": {
+      "count": 23,
+      "components": [
+        {
+          "id": "elev_001",
+          "type": "passenger_elevator",
+          "location": "core_01",
+          "capacity": "2500_kg",
+          "speed": "6_mps",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.92,
+          "maintenanceRequired": false,
+          "nextInspection": "2025-04-20"
+        }
+      ]
+    },
+    "roofing": {
+      "count": 12,
+      "components": [
+        {
+          "id": "roof_001",
+          "type": "flat_roof",
+          "location": "level_62",
+          "material": "bitumen_membrane",
+          "area": 1250.8,
+          "age": 5,
+          "condition": "good",
+          "maintenanceRequired": false,
+          "recommendation": "install_solar_panels",
+          "solarPotential": 0.89,
+          "priority": "medium"
+        }
+      ]
+    },
+    "smart_systems": {
+      "count": 156,
+      "components": [
+        {
+          "id": "smart_001",
+          "type": "building_management_system",
+          "location": "control_room",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.94,
+          "maintenanceRequired": false,
+          "capabilities": ["hvac_control", "lighting_control", "security_monitoring"]
+        },
+        {
+          "id": "smart_002",
+          "type": "occupancy_sensor",
+          "location": "level_15_office",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.96,
+          "maintenanceRequired": false
+        }
+      ]
+    },
+    "renewable_energy": {
+      "count": 8,
+      "components": [
+        {
+          "id": "renew_001",
+          "type": "solar_panel",
+          "location": "roof_level",
+          "capacity": "450_kw",
+          "age": 5,
+          "condition": "excellent",
+          "efficiency": 0.89,
+          "maintenanceRequired": false,
+          "annualGeneration": "450000_kwh",
+          "annualSavings": 67000
+        }
+      ]
+    }
+  },
+  "componentHealth": {
+    "excellent": 1247,
+    "good": 456,
+    "fair": 89,
+    "poor": 55,
+    "critical": 0
+  },
+  "maintenanceSchedule": {
+    "nextMonth": 23,
+    "nextQuarter": 67,
+    "nextYear": 234,
+    "overdue": 0
+  },
+  "efficiencyMetrics": {
+    "averageEfficiency": 0.84,
+    "energyEfficientComponents": 1456,
+    "standardComponents": 391,
+    "upgradeOpportunities": 234
+  },
+  "costAnalysis": {
+    "totalReplacementValue": 125000000,
+    "annualMaintenanceCost": 2100000,
+    "annualEnergyCost": 890000,
+    "potentialSavings": 2640000
+  },
+  "digitalTwinIntegration": {
+    "connectedComponents": 1847,
+    "realTimeMonitoring": 1456,
+    "predictiveMaintenance": 234,
+    "automatedControls": 567
+  }
+} 
